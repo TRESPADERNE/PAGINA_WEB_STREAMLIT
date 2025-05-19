@@ -1,0 +1,5 @@
+[theme]
+textColor="#000000"
+[server]
+enableStaticServing = true
+
