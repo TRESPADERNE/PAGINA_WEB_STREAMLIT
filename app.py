@@ -1,6 +1,7 @@
 import streamlit as st
-from html import partidos, estilosCSS, crear_html_partido
+from creaHTML import estilosCSS, crear_html_partido
 from autenticacion import autentica
+from leerResultados import leerResultados
 from googleSheet import leeCelda, clear_leeCelda
 
 if st.session_state.get("contador") is None:
@@ -13,10 +14,10 @@ if st.query_params.get("reset") == "true":
 st.session_state.contador += 1
 spreadsheet = autentica()
 
-worksheet = spreadsheet.worksheet("Hoja 1")  # Cambia el nombre de la hoja según sea necesario
-valor = leeCelda(worksheet, 1, 1)  # Cambia la fila y columna según sea necesario
-st.write(f"Valor de la celda A1: {valor}")
-st.write(f"Contador: {st.session_state.contador}")
+worksheet = spreadsheet.worksheet("Grupo B") 
+partidos = leerResultados(worksheet)
+
+# st.write(partidos)
 st.markdown(estilosCSS, unsafe_allow_html=True)
 
 
@@ -37,9 +38,3 @@ else:
         st.markdown(html_partido, unsafe_allow_html=True)
 
 
-# --- Notas Adicionales ---
-st.markdown("---")
-st.caption("Notas:")
-st.caption("- Se han ajustado los estilos CSS para pantallas pequeñas (<600px).")
-st.caption("- Nombres largos como 'BORUSSIA DORTMUND' ahora deberían mostrarse en dos líneas en móviles.")
-st.caption("- Los tamaños de fuente y logos se han reducido en móviles.")
