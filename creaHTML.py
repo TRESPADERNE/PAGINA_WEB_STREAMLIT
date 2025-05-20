@@ -7,7 +7,7 @@ estilosCSS ="""
 .match-container {
     background-color: #ffffff;
     /* padding: 15px 10px; */ /* Reducimos el padding vertical y horizontal */
-    padding: 10px 8px;    /* Nuevo padding más compacto */
+    padding: 8px 8px;    /* Nuevo padding más compacto */
     margin-bottom: 0px;   /* Mantenemos para juntar bloques verticalmente */
     font-family: Arial, sans-serif;
     color: #333;
