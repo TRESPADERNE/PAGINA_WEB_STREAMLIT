@@ -31,7 +31,7 @@ estilosCSS ="""
     font-size: 0.85em;
     color: #555;
     /* margin-bottom: 12px; */ /* Reducimos el margen inferior */
-    margin-bottom: 8px;     /* Nuevo margen inferior más compacto */
+    margin-bottom: 4px;     /* Nuevo margen inferior más compacto */
     font-weight: bold;
 }
 
