@@ -1,4 +1,5 @@
 import gspread
+import streamlit as st
 
 # --- Función de ayuda crucial ---
 def to_int_or_zero(value):
@@ -19,7 +20,8 @@ def to_int_or_zero(value):
         # print(f"Advertencia (to_int_or_zero): No se pudo convertir '{value}' a entero. Usando 0.")
         return 0
 
-def leerResultados(worksheet):
+@st.cache_data
+def leerResultadosFaseGrupos(_spreadsheet, nombreHoja):
     """
     Lee los datos de partidos y penaltis de una hoja de Google Sheets.
     Los valores se leen como strings. Las celdas vacías resultarán en strings vacíos.
@@ -31,6 +33,7 @@ def leerResultados(worksheet):
     Returns:
         Una lista de diccionarios, donde cada diccionario representa un partido.
     """
+    worksheet = _spreadsheet.worksheet(nombreHoja)
     lista_partidos_completa = []
     rango_resultados_partidos = 'B3:H8'
     rango_penaltis = 'E12:H17'
@@ -97,18 +100,68 @@ def leerResultados(worksheet):
 
     return lista_partidos_completa
 
-# --- Ejemplo de uso (necesitarías tu configuración de gspread antes) ---
-if __name__ == '__main__':
-    from autenticacion import autentica
-    spreadsheet = autentica()
+@st.cache_data # Cachear los datos leídos de la hoja
+def leerTablaClasificacion(_spreadsheet, nombreHoja):
+    """
+    Lee los datos de la tabla de clasificación de una hoja de Google Sheets.
+    Devuelve los datos como una lista de listas (para st.table o st.dataframe)
+    o como un DataFrame de Pandas.
 
-    worksheet = spreadsheet.worksheet("Grupo A")  # Cambia el nombre de la hoja según sea necesario
-    partidos = leerResultados( worksheet)
+    Args:
+        _spreadsheet: El objeto spreadsheet de gspread.
+        nombreHoja: El nombre de la hoja dentro del spreadsheet.
 
-    if partidos:
-        for idx, partido in enumerate(partidos):
-            print(f"\n--- Partido {idx+1} ---")
-            for key, value in partido.items():
-                print(f"  {key}: {value}")
-    else:
-        print("No se pudieron leer los datos de los partidos.")
+    Returns:
+        Un diccionario con "cabeceras" (lista) y "datos" (lista de listas),
+        o None si ocurre un error o no se encuentran datos.
+        Opcionalmente, podría devolver un DataFrame de Pandas.
+    """
+    try:
+        worksheet = _spreadsheet.worksheet(nombreHoja)
+        
+        # Rango de la tabla de clasificación, incluyendo cabeceras
+        # K2:T2 para cabeceras, K3:T6 para datos (ejemplo basado en tu imagen)
+        # Ajusta este rango si tu tabla está en otra parte o tiene más/menos filas/columnas
+        rango_tabla_clasificacion = 'K2:T6' 
+        
+        datos_tabla_raw = worksheet.get_values(rango_tabla_clasificacion)
+
+        if not datos_tabla_raw or len(datos_tabla_raw) < 2: # Necesitamos al menos cabeceras y una fila de datos
+            print(f"Advertencia: No se encontraron suficientes datos en el rango '{rango_tabla_clasificacion}' para la tabla de clasificación en la hoja '{nombreHoja}'.")
+            return None
+
+        cabeceras = datos_tabla_raw[0] # La primera fila son las cabeceras
+        datos_filas = datos_tabla_raw[1:] # El resto son las filas de datos
+
+        # Opcional: Limpiar los datos (convertir a string, strip, etc.) si es necesario.
+        # Por ahora, los dejamos como los devuelve gspread (generalmente strings).
+        # Si necesitas convertir columnas numéricas a números, puedes hacerlo aquí.
+        
+        # Ejemplo de limpieza y conversión si los números vienen como strings:
+        datos_filas_limpias = []
+        for fila in datos_filas:
+            fila_limpia = []
+            for i, valor_celda in enumerate(fila):
+                # Si la columna es 'POSICIÓN', 'PUNTOS', 'PJ', 'PG', 'PE', 'PP', 'GF', 'GC', 'DG'
+                # podrías intentar convertir a int, pero para st.table/st.dataframe, strings suelen estar bien.
+                # Aquí solo hacemos un strip básico.
+                fila_limpia.append(str(valor_celda).strip())
+            datos_filas_limpias.append(fila_limpia)
+
+
+        return {
+            "cabeceras": cabeceras,
+            "datos": datos_filas_limpias # o datos_filas si no haces limpieza explícita
+        }
+
+    except gspread.exceptions.WorksheetNotFound:
+        print(f"Error: No se encontró la hoja '{nombreHoja}' en el spreadsheet.")
+        return None
+    except gspread.exceptions.APIError as e:
+        print(f"Error de API de Google Sheets al leer la tabla de clasificación: {e}")
+        return None
+    except Exception as e:
+        print(f"Ocurrió un error inesperado al leer la tabla de clasificación: {e}")
+        import traceback
+        traceback.print_exc()
+        return None

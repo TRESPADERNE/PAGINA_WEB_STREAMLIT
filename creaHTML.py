@@ -1,4 +1,5 @@
 import html # Para html.escape
+import streamlit as st
 
 # ------------- Estilos CSS -------------
 estilosCSS ="""
@@ -133,10 +134,64 @@ estilosCSS ="""
         margin-bottom: 10px;
     }
 }
+/* Estilos para la tabla de clasificación */
+.tabla-clasificacion {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px; /* Espacio debajo de la tabla */
+    font-size: 0.85em; /* Tamaño de fuente base para la tabla */
+}
+
+.tabla-clasificacion th, .tabla-clasificacion td {
+    border: 1px solid #ddd;
+    padding: 6px 4px; /* Padding reducido para celdas */
+    text-align: center; /* Centrar por defecto */
+    white-space: nowrap; /* Evitar que el texto salte de línea por defecto */
+}
+
+.tabla-clasificacion th {
+    background-color: #004080; /* Azul oscuro para cabeceras */
+    color: white;
+    font-weight: bold;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+/* Alineación específica para la columna de Equipo */
+.tabla-clasificacion td.col-equipo {
+    text-align: left;
+    white-space: normal; /* Permitir que el nombre del equipo salte de línea si es largo */
+}
+.tabla-clasificacion td.col-equipo .logo-clasificacion {
+    width: 20px; /* Tamaño de logo más pequeño para la tabla */
+    height: 20px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 5px;
+    display: inline-block; /* Para que el margen funcione bien */
+}
+
+/* Estilos para hacerla responsive si es necesario */
+@media (max-width: 600px) {
+    .tabla-clasificacion {
+        font-size: 0.75em; /* Fuente más pequeña en móviles */
+    }
+    .tabla-clasificacion th, .tabla-clasificacion td {
+        padding: 4px 2px; /* Padding aún más reducido */
+    }
+    .tabla-clasificacion td.col-equipo .logo-clasificacion {
+        width: 18px;
+        height: 18px;
+        margin-right: 3px;
+    }
+    /* Podrías ocultar columnas menos importantes en móviles si es necesario */
+    /* .tabla-clasificacion .col-pj, .tabla-clasificacion .col-pe { display: none; } */
+    /* .tabla-clasificacion th:nth-child(4), .tabla-clasificacion td:nth-child(4) { display: none; } */ /* PJ */
+}
 </style>
 """
 
-
+@st.cache_data
 def cargaLogo(nombre_equipo_original):
     if nombre_equipo_original == "CD Palencia FF":
         return "app/static/palencia.jpg"
@@ -156,7 +211,7 @@ def cargaLogo(nombre_equipo_original):
         raise ValueError(f"Logo no encontrado para el equipo: {nombre_equipo_original}")
     
     
-
+@st.cache_data
 def crear_html_partido(partido):
     """
     Genera el bloque HTML para un partido.
@@ -244,3 +299,67 @@ def crear_html_partido(partido):
 
     return html_generado_final
 
+@st.cache_data
+def crear_html_clasificacion(clasificacion_data, usar_logos=False, alias_equipos=None):
+    """
+    Genera el HTML para una tabla de clasificación.
+
+    Args:
+        clasificacion_data (dict): Diccionario con "cabeceras" (list) y "datos" (list of lists).
+        usar_logos (bool): Si es True, intenta mostrar logos junto al nombre del equipo.
+        alias_equipos (dict): Un diccionario para mapear nombres completos de equipos a alias.
+                              Ej: {"Burgos CF": "BCF", "CD Parquesol": "PAR"}
+
+    Returns:
+        str: La cadena HTML de la tabla.
+    """
+    if not clasificacion_data or not clasificacion_data.get("cabeceras") or not clasificacion_data.get("datos"):
+        return "<p>No hay datos de clasificación para mostrar.</p>"
+
+    cabeceras = clasificacion_data["cabeceras"]
+    datos_filas = clasificacion_data["datos"]
+    
+    if alias_equipos is None:
+        alias_equipos = {}
+
+    html_tabla = "<div class='tabla-clasificacion-container' style='overflow-x: auto;'>" # Para scroll horizontal en móviles si es muy ancha
+    html_tabla += "<table class='tabla-clasificacion'>"
+    
+    # Cabecera de la tabla
+    html_tabla += "<thead><tr>"
+    for i, cabecera in enumerate(cabeceras):
+        # Asignar clases a las cabeceras para posible ocultación en CSS
+        clase_col = f"col-{cabecera.lower().replace('ó', 'o').replace(' ', '_')}" # ej. col-posición, col-pj
+        html_tabla += f"<th class='{clase_col}'>{html.escape(cabecera)}</th>"
+    html_tabla += "</tr></thead>"
+    
+    # Cuerpo de la tabla
+    html_tabla += "<tbody>"
+    for fila_datos in datos_filas:
+        html_tabla += "<tr>"
+        for i, celda_valor_raw in enumerate(fila_datos):
+            celda_valor_safe = html.escape(str(celda_valor_raw))
+            clase_col_td = f"col-{cabeceras[i].lower().replace('ó', 'o').replace(' ', '_')}"
+
+            if cabeceras[i].upper() == "EQUIPO": # Columna de Equipo
+                nombre_equipo = str(celda_valor_raw).strip()
+                nombre_a_mostrar = alias_equipos.get(nombre_equipo, nombre_equipo) # Usar alias si existe
+                nombre_a_mostrar_safe = html.escape(nombre_a_mostrar)
+                
+                logo_html = ""
+                if usar_logos:
+                    try:
+                        ruta_logo = cargaLogo(nombre_equipo) # cargaLogo ya está cacheada
+                        if ruta_logo:
+                            logo_html = f"<img src='{ruta_logo}' alt='{nombre_a_mostrar_safe}' class='logo-clasificacion'>"
+                    except ValueError: # Si cargaLogo lanza error por logo no encontrado
+                        logo_html = "" # No mostrar logo si no se encuentra
+
+                html_tabla += f"<td class='col-equipo {clase_col_td}'>{logo_html}{nombre_a_mostrar_safe}</td>"
+            else: # Otras columnas (Posición, Puntos, PJ, etc.)
+                html_tabla += f"<td class='{clase_col_td}'>{celda_valor_safe}</td>"
+        html_tabla += "</tr>"
+    html_tabla += "</tbody></table>"
+    html_tabla += "</div>" # Cierre de tabla-clasificacion-container
+    
+    return html_tabla
