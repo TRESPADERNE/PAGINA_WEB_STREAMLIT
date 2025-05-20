@@ -6,24 +6,35 @@ estilosCSS ="""
 <style>
 .match-container {
     background-color: #ffffff;
-    padding: 15px 10px;
-    margin-bottom: 0px;
+    /* padding: 15px 10px; */ /* Reducimos el padding vertical y horizontal */
+    padding: 10px 8px;    /* Nuevo padding más compacto */
+    margin-bottom: 0px;   /* Mantenemos para juntar bloques verticalmente */
     font-family: Arial, sans-serif;
     color: #333;
     border-bottom: 1px solid #eee;
     box-sizing: border-box;
 }
+
+/* Sombreado alterno para filas de partido */
+.match-container:nth-child(odd) { /* O usa :nth-child(even) si prefieres que empiece el sombreado en el segundo */
+    /* background-color: #f9f9f9; */ /* Un gris muy claro para el sombreado */
+    /* Puedes comentar la línea de arriba si el borde es suficiente separación */
+}
+
 .match-container:last-child {
     border-bottom: none;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */ /* Eliminamos el margen inferior extra del último, el espaciado general lo controlará */
 }
+
 .datetime {
     text-align: center;
     font-size: 0.85em;
     color: #555;
-    margin-bottom: 12px;
+    /* margin-bottom: 12px; */ /* Reducimos el margen inferior */
+    margin-bottom: 8px;     /* Nuevo margen inferior más compacto */
     font-weight: bold;
 }
+
 .details {
     display: flex;
     align-items: center;
@@ -31,32 +42,40 @@ estilosCSS ="""
     width: 100%;
     box-sizing: border-box;
 }
+
 .team {
     display: flex;
     align-items: center;
-    flex-basis: 38%;
+    /* flex-basis: 38%; */ /* Mantenemos, pero el espacio se reducirá por el padding general */
+    /* Podríamos ajustar a 39% o 40% si queremos dar un poco más a los equipos
+       ahora que el padding general del match-container es menor */
+    flex-basis: 39%;
     box-sizing: border-box;
 }
+
 .team-left {
     justify-content: flex-end;
     text-align: right;
 }
+
 .team-right {
     justify-content: flex-start;
     text-align: left;
 }
+
 .team-name {
     font-weight: bold;
     font-size: 0.9em;
-    margin: 0 8px;
+    margin: 0 8px; /* Mantenemos este margen entre logo y nombre */
     line-height: 1.2;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 150px;
+    max-width: 150px; /* Ajusta si es necesario con el nuevo padding */
     display: inline-block;
     vertical-align: middle;
 }
+
 .logo {
     width: 28px;
     height: 28px;
@@ -64,50 +83,50 @@ estilosCSS ="""
     flex-shrink: 0;
     vertical-align: middle;
 }
+
 .team-left .team-name { order: 1; }
 .team-left .logo { order: 2; }
 .team-right .logo { order: 1; }
 .team-right .team-name { order: 2; }
+
 .score {
     font-size: 1.6em;
     font-weight: bold;
     color: #e63946;
     text-align: center;
-    min-width: 70px;
-    padding: 0 5px;
-    flex-basis: 18%;
+    /* min-width: 70px; */ /* El flex-basis debería controlar esto */
+    padding: 0 3px;    /* Padding horizontal reducido para el marcador */
+    flex-basis: 16%;   /* Reducimos un poco para compensar el padding reducido y dar más a los equipos */
     flex-shrink: 0;
     box-sizing: border-box;
 }
+
 .penalty-score {
     text-align: center;
     font-size: 0.8em;
     color: #4A90E2;
     font-weight: normal;
-    margin-top: 4px;
+    margin-top: 3px; /* Reducido ligeramente */
     clear: both;
     width: 100%;
 }
-/* .penalty-score span {} */ /* Sin estilos específicos por ahora */
-.separator {
-    text-align: center;
-    color: #aaa;
-    margin-top: 10px;
-    font-weight: bold;
-    display: none;
-}
+
+/* Media Query para móviles */
 @media (max-width: 600px) {
     .match-container {
-        padding: 10px 5px;
+        /* padding: 10px 5px; */ /* Ya está bastante compacto arriba, pero podemos ajustar más si es necesario */
+        padding: 8px 5px;
     }
-    .details {
-        flex-wrap: nowrap;
+    .datetime {
+        margin-bottom: 6px; /* Aún más compacto en móviles */
+        font-size: 0.8em;
     }
     .team {
-        flex-basis: 37%;
+        /* flex-basis: 37%; */ /* Ajustamos de nuevo */
+        flex-basis: 38%;
     }
     .team-name {
-        font-size: 0.8em;
+        font-size: 0.8em; /* Mantenemos o reducimos un poco más si es necesario */
         margin: 0 4px;
         white-space: normal;
         overflow: visible;
@@ -121,17 +140,13 @@ estilosCSS ="""
     }
     .score {
         font-size: 1.4em;
-        min-width: 55px;
-        padding: 0 3px;
-        flex-basis: 20%;
+        /* min-width: 55px; */
+        padding: 0 2px;
+        flex-basis: 18%; /* Ajustamos para móviles */
     }
     .penalty-score {
-        font-size: 0.75em;
-        margin-top: 3px;
-    }
-    .datetime {
-        font-size: 0.8em;
-        margin-bottom: 10px;
+        font-size: 0.7em; /* Un poco más pequeño */
+        margin-top: 2px;
     }
 }
 /* Estilos para la tabla de clasificación */
