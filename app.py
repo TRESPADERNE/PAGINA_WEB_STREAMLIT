@@ -53,8 +53,11 @@ with tab1:
         # html_completo = "".join([crear_html_partido(p) for p in partidos])
         # st.markdown(html_completo, unsafe_allow_html=True)
         # Nota: Streamlit puede manejar mejor llamadas separadas para re-renderizados parciales
-        for partido_data in partidosGA:
-            html_partido = crear_html_partido(partido_data)
+        for index, partido_data in enumerate(partidosGA):
+            es_sombreado = index % 2 == 1 # Para sombrear el 2º, 4º, etc. (filas impares del índice)
+                                        # Usa `index % 2 == 0` para sombrear el 1º, 3º, etc.
+            # Llamar a la función con el argumento 'shaded'
+            html_partido = crear_html_partido(partido_data, shaded=es_sombreado) 
             st.markdown(html_partido, unsafe_allow_html=True)
 
 

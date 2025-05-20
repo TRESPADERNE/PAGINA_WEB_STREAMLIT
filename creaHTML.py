@@ -5,19 +5,8 @@ import streamlit as st
 estilosCSS ="""
 <style>
 .match-container {
-    background-color: #ffffff;
-    /* padding: 15px 10px; */ /* Reducimos el padding vertical y horizontal */
-    padding: 4px 4px;    /* Nuevo padding más compacto */
-    margin-bottom: 0px;   /* Mantenemos para juntar bloques verticalmente */
-    font-family: Arial, sans-serif;
-    color: #333;
-    border-bottom: 1px solid #eee;
-    box-sizing: border-box;
-}
-
-.match-container {
     background-color: #ffffff; /* Fondo por defecto (para el que no está sombreado) */
-    padding: 10px 8px;
+    padding: 4px 4px;
     margin-bottom: 0px;
     font-family: Arial, sans-serif;
     color: #333;
@@ -27,7 +16,7 @@ estilosCSS ="""
 
 /* Clase para el sombreado sutil */
 .match-container.shaded {
-    background-color: #f7f7f7; /* Un gris muy, muy claro y sutil */
+    background-color: #f0f0f0; /* Un gris muy, muy claro y sutil */
 }
 /* O si quieres que el que NO está sombreado tenga el fondo, y el otro sea blanco:
 .match-container {
@@ -243,47 +232,45 @@ def cargaLogo(nombre_equipo_original):
         raise ValueError(f"Logo no encontrado para el equipo: {nombre_equipo_original}")
     
     
-@st.cache_data
-def crear_html_partido(partido):
+@st.cache_data # Ahora la caché considerará 'partido' y 'shaded'
+def crear_html_partido(partido, shaded=False): # <--- AÑADIDO parámetro 'shaded'
     """
     Genera el bloque HTML para un partido.
-    Espera que todos los valores del diccionario 'partido' sean strings o None.
-    Los goles/penaltis vacíos se mostrarán como "0".
+    Añade una clase 'shaded' al contenedor principal si shaded es True.
     """
-    # --- INICIO DE DEPURACIÓN ---
-    # Descomenta para ver los datos crudos que llegan a esta función para cada partido
-    # print(f"--- CREAR_HTML_PARTIDO RECIBE: {partido} ---")
-    # --- FIN DE DEPURACIÓN ---
+    # --- DEBUG ---
+    # print(f"--- CREAR_HTML_PARTIDO RECIBE: {partido}, shaded={shaded} ---")
+    # --- FIN DEBUG ---
 
     html_generado_final = ""
+    clase_sombreado_str = " shaded" if shaded else "" # Determinar la clase basada en el parámetro
+
     try:
-        # Obtener valores del diccionario, usando string vacío como default si la clave no existe o es None
+        # Obtener valores del diccionario
         campo_raw = partido.get('campo', '')
         hora_raw = partido.get('hora', '')
         equipo_local_raw = partido.get('equipo_local', 'Local')
-        logo_local = cargaLogo(equipo_local_raw)
+        logo_local = cargaLogo(equipo_local_raw) # cargaLogo ya está cacheada
         equipo_visitante_raw = partido.get('equipo_visitante', 'Visitante')
-        logo_visitante = cargaLogo(equipo_visitante_raw)
+        logo_visitante = cargaLogo(equipo_visitante_raw) # cargaLogo ya está cacheada
 
         goles_local_str = partido.get('goles_local', '')
         goles_visitante_str = partido.get('goles_visitante', '')
         penaltis_local_str = partido.get('penaltis_local', '')
         penaltis_visitante_str = partido.get('penaltis_visitante', '')
 
-        # Escapar strings que van como contenido textual HTML o atributos 'alt'
-        campo_safe = html.escape(str(campo_raw)) # Forzar a str por si acaso antes de escapar
+        # Escapar strings
+        campo_safe = html.escape(str(campo_raw))
         hora_safe = html.escape(str(hora_raw))
         equipo_local_safe = html.escape(str(equipo_local_raw))
         equipo_visitante_safe = html.escape(str(equipo_visitante_raw))
 
-        # Para la presentación en HTML: mostrar "0" si el string de gol/penalti está vacío
-        goles_local_display = goles_local_str if goles_local_str else ""
+        # Display de goles (mostrar "" si está vacío, o "0" si prefieres)
+        goles_local_display = goles_local_str if goles_local_str else "" 
         goles_visitante_display = goles_visitante_str if goles_visitante_str else ""
         
-        # Determinar si se debe mostrar el bloque de penaltis
-        # Se muestran si ALGUNA de las celdas de penaltis tenía contenido
+        # Mostrar bloque de penaltis
         mostrar_bloque_penaltis = bool(penaltis_local_str or penaltis_visitante_str)
-
         html_penaltis_render_str = ""
         if mostrar_bloque_penaltis:
             penaltis_local_display = penaltis_local_str if penaltis_local_str else "0"
@@ -292,14 +279,13 @@ def crear_html_partido(partido):
 
         fecha_hora_render = f"Campo {campo_safe} - {hora_safe}"
         
-        # Construcción del HTML final
-        # Usamos variables intermedias para las partes más complejas por claridad
         team_left_html = f"""<div class="team team-left"><span class="team-name">{equipo_local_safe}</span><img src="{logo_local}" alt="{equipo_local_safe}" class="logo"></div>"""
         score_html = f"""<div class="score"><span class="score-number">{goles_local_display}</span><span class="score-separator">-</span><span class="score-number">{goles_visitante_display}</span>{html_penaltis_render_str}</div>"""
         team_right_html = f"""<div class="team team-right"><img src="{logo_visitante}" alt="{equipo_visitante_safe}" class="logo"><span class="team-name">{equipo_visitante_safe}</span></div>"""
 
+        # Se añade clase_sombreado_str al div principal
         html_generado_final = f"""
-        <div class="match-container">
+        <div class="match-container{clase_sombreado_str}"> 
             <div class="datetime">{fecha_hora_render}</div>
             <div class="details">
                 {team_left_html}
@@ -309,26 +295,20 @@ def crear_html_partido(partido):
         </div>
         """
     except Exception as e:
-        error_partido_str = str(partido) # Convertir a string para escapar
+        error_partido_str = str(partido)
+        error_partido_str_safe = ""
         try:
-            # Intentar escapar el string del partido para el mensaje de error
             error_partido_str_safe = html.escape(error_partido_str)
         except:
-            # Si el escapado del error falla, usar el string crudo (muy improbable)
             error_partido_str_safe = error_partido_str + " (Error al escapar datos del partido para mensaje)"
 
-        print(f"ERROR GRAVE al crear HTML para el partido: {partido}")
+        print(f"ERROR GRAVE al crear HTML para el partido: {partido}, shaded={shaded}")
         print(f"Excepción: {e}")
         import traceback
         traceback.print_exc()
-        html_generado_final = f"<div style='color:red; border:1px solid red; padding:10px;'>Error procesando datos del partido: {html.escape(str(e))}.<br>Datos: {error_partido_str_safe}</div>"
+        # Añadir también la clase de sombreado al div de error para consistencia si se desea
+        html_generado_final = f"<div class='match-container{clase_sombreado_str}' style='color:red; border:1px solid red; padding:10px;'>Error procesando datos del partido: {html.escape(str(e))}.<br>Datos: {error_partido_str_safe}</div>"
     
-    # --- DEBUG HTML FINAL ---
-    # Descomenta y ajusta la condición para ver el HTML de un partido específico
-    # (Asegúrate de que 'equipo_visitante_raw' existe en este punto si la usas en la condición)
-    # if equipo_visitante_raw == "Mullier FCN": # Ejemplo
-    #    print(f"--- HTML FINAL GENERADO ({partido.get('equipo_local', '')} vs {partido.get('equipo_visitante', '')}):\n{html_generado_final}\n---")
-
     return html_generado_final
 
 @st.cache_data
