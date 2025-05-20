@@ -15,15 +15,32 @@ estilosCSS ="""
     box-sizing: border-box;
 }
 
-/* Sombreado alterno para filas de partido */
-.match-container:nth-child(odd) { /* O usa :nth-child(even) si prefieres que empiece el sombreado en el segundo */
-    /* background-color: #f9f9f9; */ /* Un gris muy claro para el sombreado */
-    /* Puedes comentar la línea de arriba si el borde es suficiente separación */
+.match-container {
+    background-color: #ffffff; /* Fondo por defecto (para el que no está sombreado) */
+    padding: 10px 8px;
+    margin-bottom: 0px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
 }
+
+/* Clase para el sombreado sutil */
+.match-container.shaded {
+    background-color: #f7f7f7; /* Un gris muy, muy claro y sutil */
+}
+/* O si quieres que el que NO está sombreado tenga el fondo, y el otro sea blanco:
+.match-container {
+    background-color: #f7f7f7;
+}
+.match-container.unshaded { // Necesitarías añadir esta clase al otro
+    background-color: #ffffff;
+}
+*/
+
 
 .match-container:last-child {
     border-bottom: none;
-    /* margin-bottom: 10px; */ /* Eliminamos el margen inferior extra del último, el espaciado general lo controlará */
 }
 
 .datetime {
