@@ -8,7 +8,7 @@ if st.session_state.get("contador") is None:
     st.session_state.contador = 0
 
 if st.query_params.get("reset") == "true":  
-    clear_leeCelda()
+    # clear_leeCelda()
     st.query_params.reset = "false"
 
 st.session_state.contador += 1
