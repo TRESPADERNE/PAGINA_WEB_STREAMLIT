@@ -153,7 +153,6 @@ def cargaLogo(nombre_equipo_original):
     elif nombre_equipo_original == "Gimnástica Segoviana":
         return "app/static/segoviana.png"
     else:
-        return ""
         raise ValueError(f"Logo no encontrado para el equipo: {nombre_equipo_original}")
     
     

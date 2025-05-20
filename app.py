@@ -2,7 +2,7 @@ import streamlit as st
 from creaHTML import estilosCSS, crear_html_partido
 from autenticacion import autentica
 from leerResultados import leerResultados
-from googleSheet import leeCelda, clear_leeCelda
+
 
 if st.session_state.get("contador") is None:
     st.session_state.contador = 0
