@@ -3,7 +3,23 @@ from creaHTML import estilosCSS, crear_html_partido, crear_html_clasificacion
 from autenticacion import autentica
 from leerResultados import leerResultadosFaseGrupos, leerTablaClasificacion
 
+ruta_logo_patrocinador = "app/static/logoFundacionCajaBurgos.png"
+titulo_torneo = "I Torneo Fundación Caja de Burgos BCF CUP Alevín Femenino Ciudad de Burgos"
+st.logo("static/logo_I_bcfcup_fem.png")
 
+html_cabecera = f"""
+<div class="cabecera-torneo">
+    <img src="{ruta_logo_patrocinador}" alt="Logo Patrocinador" class="logo-patrocinador">
+    <div class="titulo-texto">
+        {titulo_torneo.replace("Ciudad de Burgos", "Ciudad<br>de Burgos")}
+    </div>
+</div>
+"""
+# Nota: He usado ` ` (non-breaking space) para "de Burgos" si quieres que
+# "de" y "Burgos" intenten quedarse juntos si hay un salto de línea antes.
+# Puedes quitarlo si no es necesario.
+
+st.markdown(html_cabecera, unsafe_allow_html=True)
 if st.session_state.get("contador") is None:
     st.session_state.contador = 0
 
@@ -43,7 +59,7 @@ with tab1:
     else:
         st.warning("No se pudieron cargar los datos de clasificación para el Grupo A.")
 
-    st.markdown("---") # Separador visual
+    # st.markdown("---") # Separador visual
 
     # --- Mostrar cada partido ---
     if not partidosGA:

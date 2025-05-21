@@ -209,6 +209,46 @@ estilosCSS ="""
     /* .tabla-clasificacion .col-pj, .tabla-clasificacion .col-pe { display: none; } */
     /* .tabla-clasificacion th:nth-child(4), .tabla-clasificacion td:nth-child(4) { display: none; } */ /* PJ */
 }
+.cabecera-torneo {
+    display: flex; /* Para alinear logo y texto */
+    align-items: center; /* Centrar verticalmente los elementos */
+    justify-content: center; /* Centrar horizontalmente el contenido general */
+    padding: 15px 0; /* Espaciado vertical */
+    border-bottom: 2px solid #004080; /* Línea divisoria opcional */
+    margin-bottom: 20px; /* Espacio debajo de la cabecera */
+}
+
+.cabecera-torneo img.logo-patrocinador {
+    max-height: 80px; /* Ajusta el tamaño máximo del logo según necesites */
+    /* width: auto; */ /* Para mantener la proporción */
+    margin-right: 20px; /* Espacio entre el logo y el texto */
+    /* flex-shrink: 0; */ /* Para que el logo no se encoja si el texto es largo */
+}
+
+.cabecera-torneo .titulo-texto {
+    text-align: left; /* O 'center' si prefieres el texto centrado respecto a sí mismo */
+    font-size: 1.5em; /* Tamaño del título principal */
+    font-weight: bold;
+    color: #004080; /* Color del título */
+    line-height: 1.3; /* Espaciado entre líneas si el título es multilínea */
+}
+
+/* Media query para ajustar en pantallas más pequeñas */
+@media (max-width: 768px) {
+    .cabecera-torneo {
+        flex-direction: column; /* Apilar logo y texto verticalmente */
+        text-align: center; /* Centrar todo el contenido */
+    }
+    .cabecera-torneo img.logo-patrocinador {
+        max-height: 60px;
+        margin-right: 0; /* Sin margen derecho cuando está apilado */
+        margin-bottom: 10px; /* Espacio debajo del logo */
+    }
+    .cabecera-torneo .titulo-texto {
+        font-size: 1.2em;
+        text-align: center; /* Forzar centrado del texto */
+    }
+}
 </style>
 """
 
