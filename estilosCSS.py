@@ -212,65 +212,110 @@ estilosCSS ="""
 
 estilos_cabecera_css = """
 <style>
-.cabecera-torneo {
-    display: flex;
-    align-items: center;
-    padding: 5px 0;
-    border-bottom: 2px solid #004080;
-    /* margin-bottom: 20px; */ /* Este era el valor anterior */
-    margin-bottom: 1px;   /* REDUCIDO: Prueba con este valor o incluso menos, como 5px o 0px */
-    width: 100%;
-}
-
-.cabecera-torneo .logo-patrocinador-container {
-    flex-shrink: 0; /* Para que el logo no se encoja */
-    margin-right: 10px; /* Espacio entre el logo y el texto del título */
-    /* Opcional: si quieres limitar el tamaño del contenedor del logo */
-    /* max-width: 100px; */
-}
+/* ... (tus estilos existentes para .cabecera-torneo, .logo-patrocinador-container, etc.) ... */
 
 .cabecera-torneo img.logo-patrocinador {
-    display: block; /* Para evitar espacio extra debajo si es inline */
-    max-height: 50px; /* 70 antes Ajusta el tamaño máximo del logo */
-    width: auto;      /* Para mantener la proporción */
+    display: block;
+    max-height: 70px; /* Tamaño para escritorio y pantallas más grandes */
+    width: auto;
 }
 
 .cabecera-torneo .titulo-texto-container {
-    text-align: left; /* El texto dentro de este contenedor se alinea a la izquierda */
-    line-height: 1.3; /* Espaciado entre las dos líneas del título */
-    /* flex-grow: 1; */ /* Para que ocupe el espacio restante (opcional, puede no ser necesario) */
+    text-align: left;
+    line-height: 1.3;
 }
 
 .cabecera-torneo .titulo-linea1 {
-    font-size: 1.4em; /* Tamaño para la primera línea */
+    font-size: 1.4em; 
     font-weight: bold;
-    color: #004080; /* Color para el título */
-    display: block; /* Asegura que sea un bloque para ocupar su línea */
+    color: #004080;
+    display: block;
 }
 
 .cabecera-torneo .titulo-linea2 {
-    font-size: 1.4em; /* Tamaño para la primera línea */
-    font-weight: bold;
-    color: #004080; /* Color para el título */
-    display: block; /* Asegura que sea un bloque para ocupar su línea */
+    font-size: 1.1em; 
+    font-weight: normal; 
+    color: #333333;
+    display: block;
 }
 
-/* Ajustes para pantallas más pequeñas si son necesarios */
-/* En este caso, como queremos mantener la disposición, los ajustes serían mínimos */
-@media (max-width: 600px) {
-    .cabecera-torneo img.logo-patrocinador {
-        max-height: 55px; /* Logo un poco más pequeño en móviles */
-        margin-right: 10px; /* Menos espacio */
-    }
-    .cabecera-torneo .titulo-linea1 {
-        font-size: 1.2em;
-    }
-    .cabecera-torneo .titulo-linea2 {
-        font-size: 1.0em;
-    }
+/* Ajustes para pantallas más pequeñas (móviles) */
+@media (max-width: 600px) { /* Puedes ajustar este breakpoint (600px) si es necesario */
     .cabecera-torneo {
-        padding: 8px 0;
+        padding: 8px 5px; /* Padding ligeramente ajustado para cabecera en móvil */
+        /* Si quieres un poco más de espacio entre logo y texto en móvil,
+           puedes ajustar el margen del contenedor del logo o del texto aquí también */
     }
+
+    .cabecera-torneo .logo-patrocinador-container {
+        margin-right: 8px; /* Menor margen a la derecha del logo en móviles */
+    }
+    
+    .cabecera-torneo img.logo-patrocinador {
+        max-height: 45px; /* <<--- REDUCIDO SIGNIFICATIVAMENTE PARA MÓVILES --- */
+                          /* Prueba con valores como 40px, 45px, 50px hasta que se vea bien */
+    }
+
+    .cabecera-torneo .titulo-texto-container {
+        line-height: 1.2; /* Ligeramente más compacto si es necesario */
+    }
+
+    .cabecera-torneo .titulo-linea1 {
+        font-size: 1.1em; /* Fuente del título un poco más pequeña en móviles */
+    }
+
+    .cabecera-torneo .titulo-linea2 {
+        font-size: 0.9em;  /* Fuente del título un poco más pequeña en móviles */
+    }
+}
+</style>
+"""
+
+# Estilos CSS para los logos finales (puedes añadir esto a tu string estilosCSS principal
+# o inyectarlo aquí si solo se usa para esta sección)
+estilos_logos_finales = """
+<style>
+/* Contenedor para el subheader "Con la colaboración de:" */
+.subheader-compacto {
+    margin-bottom: 5px !important; /* Reduce el espacio inferior del subheader */
+    /* Puedes ajustar el margin-top también si es necesario */
+    /* margin-top: 10px !important; */
+}
+.subheader-compacto h3 { /* Apunta al h3 dentro del subheader */
+    margin-bottom: 0px !important; /* Quita el margen inferior del h3 mismo */
+    padding-bottom: 0px !important;
+    font-size: 1.2em; /* Opcional: ajustar tamaño si el subheader es muy grande */
+}
+
+/* Para el separador st.markdown("---") si lo usas */
+hr.st-emotion-cache-1sbq2qa.e1tzin5v0 { /* Esta clase puede cambiar, necesitas inspeccionar */
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+/* Contenedor de logos finales si usas st.columns y quieres ajustar márgenes del div interno */
+.logo-column-content {
+    /* padding-top: 0px !important; */ /* Ejemplo, si st.columns añade padding */
+    /* padding-bottom: 0px !important; */
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+/* Si usaste la Opción 2 (HTML/CSS) para los logos finales: */
+.logos-finales-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* padding: 20px 0; */ /* Valor anterior */
+    padding: 5px 0;   /* REDUCIDO: Padding vertical para el contenedor de logos */
+    flex-wrap: wrap;
+}
+.logos-finales-container img {
+    max-width: 160px;  /* Puedes ajustar esto */
+    max-height: 90px; /* Puedes ajustar esto */
+    object-fit: contain;
+    /* margin: 10px 15px; */ /* Valor anterior */
+    margin: 5px 10px;    /* REDUCIDO: Espacio alrededor de cada logo */
 }
 </style>
 """

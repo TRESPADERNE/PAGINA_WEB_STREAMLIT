@@ -1,7 +1,7 @@
 import streamlit as st
 import html
 from creaHTML import crear_html_partido, crear_html_clasificacion
-from estilosCSS import estilosCSS, estilos_cabecera_css
+from estilosCSS import estilosCSS, estilos_cabecera_css, estilos_logos_finales
 from autenticacion import autentica
 from leerResultados import leerResultadosFaseGrupos, leerTablaClasificacion
 
@@ -103,3 +103,36 @@ with tab2:
         for partido_data in partidos:
             html_partido = crear_html_partido(partido_data)
             st.markdown(html_partido, unsafe_allow_html=True)
+
+st.markdown(estilos_logos_finales, unsafe_allow_html=True)
+
+
+# --- SECCIÓN DE LOGOS AL FINAL DE LA PÁGINA ---
+
+# Separador opcional (ahora con menos margen si el CSS de arriba funciona)
+st.markdown("---") # Puedes quitarlo si no lo quieres o si el CSS lo hace muy pequeño
+
+# Subheader con clase para control de margen
+st.markdown("<div class='subheader-compacto'><h3>Con la colaboración de:</h3></div>", unsafe_allow_html=True)
+# Alternativa si st.subheader es más simple, pero el control de margen es por CSS a su wrapper
+# st.subheader("Con la colaboración de:") # Y luego intentar apuntar al div de st.subheader
+
+
+ruta_logo_final_1 = "app/static/molinotejada.png" # Reemplaza con tus nombres de archivo
+ruta_logo_final_2 = "app/static/ezsa.png"   # Reemplaza con tus nombres de archivo
+alt_logo_1 = "Molino Tejada"
+alt_logo_2 = "Ezsa Sanidad Ambiental"
+
+
+st.markdown(estilos_logos_finales, unsafe_allow_html=True)
+
+# HTML para los logos
+html_logos_finales = f"""
+<div class="logos-finales-container">
+    <img src="{ruta_logo_final_1}" alt="{html.escape(alt_logo_1)}">
+    <img src="{ruta_logo_final_2}" alt="{html.escape(alt_logo_2)}">
+</div>
+"""
+st.markdown(html_logos_finales, unsafe_allow_html=True)
+
+st.markdown("---")
