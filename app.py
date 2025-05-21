@@ -7,35 +7,29 @@ from leerResultados import leerResultadosFaseGrupos, leerTablaClasificacion
 
 
 
-hide_streamlit_elements_css = f"""
+hide_streamlit_elements_css = """
 <style>
-#MainMenu {{visibility: hidden;}}
-header {{visibility: hidden;}}
+    /* Oculta el menú de hamburguesa */
+    #MainMenu {
+        visibility: hidden;
+    }
 
-/* Intento genérico para el pie de página estándar, mantenlo por si acaso */
-footer {{
-    display: none !important;
-}}
+    /* Oculta la cabecera de Streamlit (donde a veces aparece el logo de la corona) */
+    header {
+        visibility: hidden;
+    }
 
-/* Apuntar al contenedor del perfil del creador que encontraste */
-/* Usamos un selector de atributo para la clase que contiene '_profileContainer_'
-   Esto es un poco más robusto que usar la clase hasheada completa, por si el hash cambia
-   pero la estructura del nombre de la clase se mantiene. */
-div[class*="_profileContainer_"] {{ /* Busca divs cuya clase CONTENGA "_profileContainer_" */
-    display: none !important;
-}}
+    /* Oculta el pie de página genérico de Streamlit (si existe y es una etiqueta <footer>) */
+    footer {
+        display: none !important;
+    }
 
-/* Alternativamente, si quieres ser muy específico con la clase hasheada (menos robusto a largo plazo): */
-div._profileContainer_gzau3_53 {{
-    display: none !important;
-}} 
-
-/* Si quieres apuntar directamente a la imagen del avatar por su data-testid
-   (esto solo ocultaría la imagen, no su contenedor, así que el contenedor podría seguir ocupando espacio) */
-/* img[data-testid="appCreatorAvatar"] {{
-    display: none !important;
-}} */
-
+    /* OCULTAR EL CONTENEDOR DEL AVATAR DEL CREADOR (BASADO EN TU HTML) */
+    /* Este selector apunta directamente a la clase que identificaste. */
+    /* Es la opción más directa pero puede romperse si Streamlit cambia esta clase generada. */
+    div._profileContainer_gzau3_53 {
+        display: none !important;
+    }
 </style>
 """
 st.markdown(hide_streamlit_elements_css, unsafe_allow_html=True)
