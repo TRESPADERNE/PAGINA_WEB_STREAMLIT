@@ -214,10 +214,11 @@ estilos_cabecera_css = """
 <style>
 .cabecera-torneo {
     display: flex;
-    align-items: center; /* Centrar verticalmente el logo y el bloque de texto */
-    padding: 10px 0;    /* Espaciado vertical */
-    border-bottom: 2px solid #004080; /* O el color que prefieras */
-    margin-bottom: 20px; /* Espacio debajo de la cabecera */
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 2px solid #004080;
+    /* margin-bottom: 20px; */ /* Este era el valor anterior */
+    margin-bottom: 1px;   /* REDUCIDO: Prueba con este valor o incluso menos, como 5px o 0px */
     width: 100%;
 }
 
