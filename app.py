@@ -5,21 +5,40 @@ from estilosCSS import estilosCSS, estilos_cabecera_css, estilos_logos_finales
 from autenticacion import autentica
 from leerResultados import leerResultadosFaseGrupos, leerTablaClasificacion
 
-hide_streamlit_branding = """
+
+
+hide_streamlit_elements_css = f"""
 <style>
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-header {visibility: hidden;} /* Descomenta esto para ocultar toda la barra superior */
-                                 /* ¡CUIDADO! Esto también oculta los botones de "Rerun", "Stop" */
+#MainMenu {{visibility: hidden;}}
+header {{visibility: hidden;}}
+
+/* Intento genérico para el pie de página estándar, mantenlo por si acaso */
+footer {{
+    display: none !important;
+}}
+
+/* Apuntar al contenedor del perfil del creador que encontraste */
+/* Usamos un selector de atributo para la clase que contiene '_profileContainer_'
+   Esto es un poco más robusto que usar la clase hasheada completa, por si el hash cambia
+   pero la estructura del nombre de la clase se mantiene. */
+div[class*="_profileContainer_"] {{ /* Busca divs cuya clase CONTENGA "_profileContainer_" */
+    display: none !important;
+}}
+
+/* Alternativamente, si quieres ser muy específico con la clase hasheada (menos robusto a largo plazo): */
+/* div._profileContainer_gzau3_53 {{
+    display: none !important;
+}} */
+
+/* Si quieres apuntar directamente a la imagen del avatar por su data-testid
+   (esto solo ocultaría la imagen, no su contenedor, así que el contenedor podría seguir ocupando espacio) */
+/* img[data-testid="appCreatorAvatar"] {{
+    display: none !important;
+}} */
+
 </style>
 """
-st.markdown(hide_streamlit_branding, unsafe_allow_html=True)
-
-hide_github_icon = """
-
-.css-1jc7ptx, .e1ewe7hr3, .viewerBadge_container__1QSob, .styles_viewerBadge__1yB5_, .viewerBadge_link__1S137, .viewerBadge_text__1JaDK{ display: none; } #MainMenu{ visibility: hidden; } footer { visibility: hidden; } header { visibility: hidden; }
-"""
-st.markdown(hide_github_icon, unsafe_allow_html=True)
+st.markdown(hide_streamlit_elements_css, unsafe_allow_html=True)
 
 st.markdown(estilos_cabecera_css, unsafe_allow_html=True) # Inyecta todos los estilos
 
