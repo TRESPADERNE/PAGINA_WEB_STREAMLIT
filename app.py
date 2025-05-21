@@ -33,9 +33,9 @@ hide_streamlit_elements_css = """
     }
 
     /* Si el div del perfil sigue siendo un problema con la clase que te di antes: */
-    /* div._profileContainer_gzau3_53 {
+    div._profileContainer_gzau3_53 {
         display: none !important;
-    } */
+    } 
 
 </style> 
 """
