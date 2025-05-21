@@ -5,6 +5,15 @@ from estilosCSS import estilosCSS, estilos_cabecera_css, estilos_logos_finales
 from autenticacion import autentica
 from leerResultados import leerResultadosFaseGrupos, leerTablaClasificacion
 
+hide_streamlit_branding = """
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+/* header {visibility: hidden;} */ /* Descomenta esto para ocultar toda la barra superior */
+                                 /* ¡CUIDADO! Esto también oculta los botones de "Rerun", "Stop" */
+</style>
+"""
+st.markdown(hide_streamlit_branding, unsafe_allow_html=True)
 
 st.markdown(estilos_cabecera_css, unsafe_allow_html=True) # Inyecta todos los estilos
 
