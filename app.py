@@ -5,30 +5,6 @@ from estilosCSS import estilosCSS, estilos_cabecera_css, estilos_logos_finales
 from autenticacion import autentica
 from leerResultados import leerResultadosFaseGrupos, leerTablaClasificacion
 
-# ruta_logo_patrocinador = "app/static/logoFundacionCajaBurgos.png"
-# titulo_torneo = "I Torneo Fundación Caja de Burgos BCF CUP Alevín Femenino"
-# st.logo("static/logo_I_bcfcup_fem.png")
-
-# # --- TÍTULO DEL TORNEO DIVIDIDO ---
-# titulo_linea_1 = "I Torneo BCF CUP Alevín Femenino"
-# titulo_linea_2 = "Fundación Caja de Burgos"
-# st.markdown(estilos_cabecera_css, unsafe_allow_html=True)
-
-# # Generar el HTML para la cabecera
-# html_cabecera = f"""
-# <div class="cabecera-torneo">
-#     <div class="logo-patrocinador-container">
-#         <img src="{ruta_logo_patrocinador}" alt="Logo Patrocinador" class="logo-patrocinador">
-#     </div>
-#     <div class="titulo-texto-container">
-#         <span class="titulo-linea1">{html.escape(titulo_linea_1)}</span>
-#         <span class="titulo-linea2">{html.escape(titulo_linea_2)}</span>
-#     </div>
-# </div>
-# """
-# # Asegúrate de tener `import html` al principio de tu script para `html.escape`
-
-# st.markdown(html_cabecera, unsafe_allow_html=True)
 
 st.markdown(estilos_cabecera_css, unsafe_allow_html=True) # Inyecta todos los estilos
 
@@ -39,7 +15,7 @@ titulo_linea_1 = "I Torneo BCF CUP Alevín Femenino" # Ajustado para que coincid
 titulo_linea_2 = "Fundación Caja de Burgos"      # Ajustado
 
 html_cabecera = f"""
-<div class="cabecera-torneo">
+<div class="cabecera-torneo-wrapper"> 
     <div class="logo-patrocinador-container">
         <img src="{ruta_logo_patrocinador}" alt="Logo Patrocinador" class="logo-patrocinador">
     </div>
@@ -51,13 +27,6 @@ html_cabecera = f"""
 """
 st.markdown(html_cabecera, unsafe_allow_html=True)
 
-
-# --- Línea Separadora Sutil ANTES de los Tabs ---
-# Opción A: Usar st.markdown y estilizar el <hr> (necesitas la clase CSS correcta)
-st.markdown("---") 
-
-# Opción B: Si la Opción A es difícil de estilizar, usa un div con tu propia clase
-# st.markdown("<div class='separador-sutil-antes-tabs'></div>", unsafe_allow_html=True)
 
 if st.session_state.get("contador") is None:
     st.session_state.contador = 0

@@ -213,62 +213,71 @@ estilosCSS ="""
 estilos_cabecera_css = """
 <style>
 /* === ESTILOS CABECERA === */
-.cabecera-torneo {
+.cabecera-torneo-wrapper { /* Nuevo div wrapper para centrar todo el bloque de cabecera */
     display: flex;
-    align-items: center; 
-    padding: 10px 0; 
-    border-bottom: 2px solid #004080; /* Línea gruesa después de la cabecera */
-    /* margin-bottom: 10px; */ /* Eliminamos el margen aquí si vamos a usar un <hr> estilizado después */
-    width: 100%;
+    flex-direction: column;
+    align-items: center; /* Centra el logo y el bloque de texto horizontalmente */
+    margin-bottom: 10px; /* Espacio después de toda la cabecera, antes del <hr> */
 }
 
-.cabecera-torneo .logo-patrocinador-container {
-    flex-shrink: 0;
-    /* margin-right: 10px; */ /* Valor anterior para móvil */
-    margin-right: 20px;   /* AUMENTADO: Espacio entre logo y título (para todas las pantallas) */
-                          /* Puedes tener un valor diferente en la media query si es necesario */
+.cabecera-torneo-wrapper .logo-patrocinador-container {
+    margin-bottom: 8px; /* Espacio entre el logo y la primera línea del título */
+    /* text-align: center; /* Para asegurar que el logo esté centrado si su contenedor es más ancho */
 }
 
-.cabecera-torneo img.logo-patrocinador {
-    display: block;
-    max-height: 70px; 
+.cabecera-torneo-wrapper img.logo-patrocinador {
+    display: block; /* Para que margin: auto funcione si se quiere centrar */
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 60px; /* Ajusta según necesites */
     width: auto;
 }
 
-.cabecera-torneo .titulo-texto-container {
-    text-align: left;
+.cabecera-torneo-wrapper .titulo-texto-container {
+    text-align: center; /* Centra las líneas de texto */
     line-height: 1.3;
 }
 
-.cabecera-torneo .titulo-linea1 {
+.cabecera-torneo-wrapper .titulo-linea1 {
     font-size: 1.4em; 
     font-weight: bold;
     color: #004080;
-    display: block;
+    display: block; /* Para que ocupe su propia línea */
 }
 
-.cabecera-torneo .titulo-linea2 {
+.cabecera-torneo-wrapper .titulo-linea2 {
     font-size: 1.4em; 
     font-weight: bold;
     color: #004080;
-    display: block;
+    display: block; /* Para que ocupe su propia línea */
 }
+
+/* Línea azul debajo de todo el bloque de cabecera (logo + título) */
+.cabecera-torneo-wrapper::after {
+    content: "";
+    display: block;
+    width: 100%; /* O un porcentaje menor si quieres que no ocupe todo el ancho */
+    /* max-width: 800px; */ /* Opcional: ancho máximo para la línea */
+    height: 2px;
+    background-color: #004080;
+    margin-top: 10px; /* Espacio entre el título y esta línea */
+    /* margin-left: auto; */ /* Para centrar la línea si tiene max-width */
+    /* margin-right: auto; */
+}
+
 
 /* === ESTILOS PARA EL SEPARADOR HR ANTES DE LOS TABS === */
-/* Necesitarás inspeccionar el elemento <hr> para obtener la clase exacta que Streamlit le asigna.
-   La clase puede cambiar. Esto es un ejemplo común.
-   Si `st.markdown("---")` no usa una clase predecible, podrías envolverlo en un div con tu propia clase.
-*/
-hr.st-emotion-cache-1sbq2qa.e1tzin5v0 { /* EJEMPLO DE CLASE - ¡VERIFICA LA TUYA! */
-    margin-top: 15px !important;    /* Espacio encima de la línea */
-    margin-bottom: 10px !important; /* Espacio debajo de la línea, antes de los tabs */
+hr.st-hr { /* Streamlit 1.33+ usa esta clase para el <hr> de st.markdown("---") */
+    margin-top: 10px !important;    /* Espacio encima de la línea sutil */
+    margin-bottom: 10px !important; /* Espacio debajo de la línea sutil, antes de los tabs */
     border: none !important;
     border-top: 1px solid #dddddd !important; /* Línea muy sutil */
     height: 1px !important;
 }
-/* Alternativa si no puedes apuntar a la clase del HR de Streamlit:
+/* Si la clase de arriba no funciona, inspecciona y reemplaza. O usa la alternativa: */
+/*
 .separador-sutil-antes-tabs {
-    margin-top: 15px;
+    margin-top: 10px;
     margin-bottom: 10px;
     border: none;
     border-top: 1px solid #dddddd;
@@ -276,42 +285,30 @@ hr.st-emotion-cache-1sbq2qa.e1tzin5v0 { /* EJEMPLO DE CLASE - ¡VERIFICA LA TUYA
 }
 */
 
-
-/* === MEDIA QUERY PARA MÓVILES === */
+/* === MEDIA QUERY PARA MÓVILES (Ajustes si son necesarios) === */
 @media (max-width: 600px) {
-    .cabecera-torneo {
-        padding: 8px 5px;
+    .cabecera-torneo-wrapper img.logo-patrocinador {
+        max-height: 50px; 
     }
-
-    .cabecera-torneo .logo-patrocinador-container {
-        margin-right: 12px; /* Espacio ajustado para móviles */
+    .cabecera-torneo-wrapper .titulo-linea1 {
+        font-size: 1.2em; 
     }
-    
-    .cabecera-torneo img.logo-patrocinador {
-        max-height: 45px; 
+    .cabecera-torneo-wrapper .titulo-linea2 {
+        font-size: 1.2em;  
     }
-
-    .cabecera-torneo .titulo-texto-container {
-        line-height: 1.2; 
+    .cabecera-torneo-wrapper::after { /* La línea azul */
+        margin-top: 8px;
     }
-
-    .cabecera-torneo .titulo-linea1 {
-        font-size: 1.1em; 
-    }
-
-    .cabecera-torneo .titulo-linea2 {
-        font-size: 1.1em;  
-    }
-
-    /* Ajuste del separador HR en móviles si es necesario */
-    hr.st-emotion-cache-1sbq2qa.e1tzin5v0 { /* EJEMPLO DE CLASE - ¡VERIFICA LA TUYA! */
-        margin-top: 10px !important;
+    hr.st-hr {
+        margin-top: 8px !important;
         margin-bottom: 8px !important;
     }
-    /* .separador-sutil-antes-tabs {
-        margin-top: 10px;
+    /*
+    .separador-sutil-antes-tabs {
+        margin-top: 8px;
         margin-bottom: 8px;
-    } */
+    }
+    */
 }
 
 /* ... (tus otros estilos: .match-container, .tabla-clasificacion, etc.) ... */
