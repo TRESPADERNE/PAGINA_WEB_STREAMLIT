@@ -1,8 +1,6 @@
 import html # Para html.escape
 import streamlit as st
 
-
-
 @st.cache_data
 def cargaLogo(nombre_equipo_original):
     if nombre_equipo_original == "CD Palencia FF":

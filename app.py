@@ -1,6 +1,7 @@
 import streamlit as st
 import html
-from creaHTML import estilosCSS, estilos_cabecera_css, crear_html_partido, crear_html_clasificacion
+from creaHTML import crear_html_partido, crear_html_clasificacion
+from estilosCSS import estilosCSS, estilos_cabecera_css
 from autenticacion import autentica
 from leerResultados import leerResultadosFaseGrupos, leerTablaClasificacion
 
@@ -9,8 +10,8 @@ titulo_torneo = "I Torneo Fundación Caja de Burgos BCF CUP Alevín Femenino"
 st.logo("static/logo_I_bcfcup_fem.png")
 
 # --- TÍTULO DEL TORNEO DIVIDIDO ---
-titulo_linea_1 = "I Torneo Fundación Caja de Burgos"
-titulo_linea_2 = "BCF CUP Alevín Femenino"
+titulo_linea_1 = "I Torneo BCF CUP Alevín Femenino"
+titulo_linea_2 = "Fundación Caja de Burgos"
 st.markdown(estilos_cabecera_css, unsafe_allow_html=True)
 
 # Generar el HTML para la cabecera
