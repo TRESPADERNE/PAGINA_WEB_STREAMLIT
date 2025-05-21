@@ -20,7 +20,7 @@ st.markdown(estilos_cabecera_css, unsafe_allow_html=True) # Inyecta todos los es
 
 # --- Cabecera ---
 ruta_logo_patrocinador = "app/static/logoFundacionCajaBurgos.png"
-titulo_linea_1 = "I Torneo BCF CUP Alevín Femenino" # Ajustado para que coincida con tu imagen
+titulo_linea_1 = "I Torneo BCF CUP Alevín Femenin" # Ajustado para que coincida con tu imagen
 titulo_linea_2 = "Fundación Caja de Burgos"      # Ajustado
 
 html_cabecera = f"""
