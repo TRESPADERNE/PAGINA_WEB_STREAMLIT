@@ -16,7 +16,7 @@ header {visibility: hidden;} /* Descomenta esto para ocultar toda la barra super
 st.markdown(hide_streamlit_branding, unsafe_allow_html=True)
 
 hide_github_icon = """
-#GithubIcon {
+GithubIcon {
   visibility: hidden;
 }
 """
