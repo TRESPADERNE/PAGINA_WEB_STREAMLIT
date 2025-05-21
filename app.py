@@ -8,29 +8,36 @@ from leerResultados import leerResultadosFaseGrupos, leerTablaClasificacion
 
 
 hide_streamlit_elements_css = """
-<style>
-    /* Oculta el menú de hamburguesa */
-    #MainMenu {
-        visibility: hidden;
+<style>   данни <--- ¡ASEGÚRATE DE QUE ESTO ESTÉ AQUÍ!
+
+    /* Tus selectores CSS para ocultar elementos */
+    .css-1jc7ptx, 
+    .e1ewe7hr3, 
+    .viewerBadge_container__1QSob, 
+    .styles_viewerBadge__1yB5_, 
+    .viewerBadge_link__1S137, 
+    .viewerBadge_text__1JaDK { 
+        display: none !important; /* Añadido !important por si acaso */
+    } 
+    
+    #MainMenu { 
+        visibility: hidden; 
+    } 
+    
+    footer { 
+        visibility: hidden; /* O display: none !important; */
+    } 
+    
+    header { 
+        visibility: hidden; 
     }
 
-    /* Oculta la cabecera de Streamlit (donde a veces aparece el logo de la corona) */
-    header {
-        visibility: hidden;
-    }
-
-    /* Oculta el pie de página genérico de Streamlit (si existe y es una etiqueta <footer>) */
-    footer {
+    /* Si el div del perfil sigue siendo un problema con la clase que te di antes: */
+    /* div._profileContainer_gzau3_53 {
         display: none !important;
-    }
+    } */
 
-    /* OCULTAR EL CONTENEDOR DEL AVATAR DEL CREADOR (BASADO EN TU HTML) */
-    /* Este selector apunta directamente a la clase que identificaste. */
-    /* Es la opción más directa pero puede romperse si Streamlit cambia esta clase generada. */
-    div._profileContainer_gzau3_53 {
-        display: none !important;
-    }
-</style>
+</style>   данни <--- ¡Y ESTO AL FINAL!
 """
 st.markdown(hide_streamlit_elements_css, unsafe_allow_html=True)
 
