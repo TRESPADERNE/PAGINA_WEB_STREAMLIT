@@ -233,9 +233,9 @@ estilos_cabecera_css = """
 }
 
 .cabecera-torneo .titulo-linea2 {
-    font-size: 1.1em; 
-    font-weight: normal; 
-    color: #333333;
+    font-size: 1.4em; 
+    font-weight: bold;
+    color: #004080;
     display: block;
 }
 
