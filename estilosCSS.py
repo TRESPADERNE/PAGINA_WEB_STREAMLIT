@@ -265,7 +265,7 @@ estilos_cabecera_css = """
     }
 
     .cabecera-torneo .titulo-linea2 {
-        font-size: 0.9em;  /* Fuente del título un poco más pequeña en móviles */
+        font-size: 1.1em;  /* Fuente del título un poco más pequeña en móviles */
     }
 }
 </style>
