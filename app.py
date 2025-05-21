@@ -8,36 +8,29 @@ from leerResultados import leerResultadosFaseGrupos, leerTablaClasificacion
 
 
 hide_streamlit_elements_css = """
-<style> 
-
-    /* Tus selectores CSS para ocultar elementos */
-    .css-1jc7ptx, 
-    .e1ewe7hr3, 
-    .viewerBadge_container__1QSob, 
-    .styles_viewerBadge__1yB5_, 
-    .viewerBadge_link__1S137, 
-    .viewerBadge_text__1JaDK { 
-        display: none !important; /* Añadido !important por si acaso */
-    } 
-    
-    #MainMenu { 
-        visibility: hidden; 
-    } 
-    
-    footer { 
-        visibility: hidden; /* O display: none !important; */
-    } 
-    
-    header { 
-        visibility: hidden; 
+<style>
+    #MainMenu {
+        visibility: hidden;
+    }
+    header {
+        visibility: hidden;
+    }
+    footer { /* Intento genérico para el footer, mantenlo */
+        display: none !important;
     }
 
-    /* Si el div del perfil sigue siendo un problema con la clase que te di antes: */
-    div._profileContainer_gzau3_53 {
+    /* OCULTAR EL BADGE/LINK ESPECÍFICO QUE VA A STREAMLIT.IO/CLOUD */
+    /* Este selector apunta a cualquier tag <a> cuyo atributo href comience con "https://streamlit.io" */
+    a[href^="https://streamlit.io"] {
         display: none !important;
-    } 
+    }
 
-</style> 
+    /* OCULTAR EL CONTENEDOR DEL AVATAR DEL CREADOR (si aún es un problema y tiene esa clase) */
+    /* Ya lo tenías, esto es por si sigue siendo relevante: */
+    div[class*="_profileContainer_"] {
+        display: none !important;
+    }
+</style>
 """
 st.markdown(hide_streamlit_elements_css, unsafe_allow_html=True)
 
