@@ -26,9 +26,9 @@ div[class*="_profileContainer_"] {{ /* Busca divs cuya clase CONTENGA "_profileC
 }}
 
 /* Alternativamente, si quieres ser muy específico con la clase hasheada (menos robusto a largo plazo): */
-/* div._profileContainer_gzau3_53 {{
+div._profileContainer_gzau3_53 {{
     display: none !important;
-}} */
+}} 
 
 /* Si quieres apuntar directamente a la imagen del avatar por su data-testid
    (esto solo ocultaría la imagen, no su contenedor, así que el contenedor podría seguir ocupando espacio) */
