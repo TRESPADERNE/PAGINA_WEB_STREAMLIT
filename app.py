@@ -6,34 +6,6 @@ from autenticacion import autentica
 from leerResultados import leerResultadosFaseGrupos, leerTablaClasificacion
 
 
-
-hide_streamlit_elements_css = """
-<style>
-    #MainMenu {
-        visibility: hidden;
-    }
-    header {
-        visibility: hidden;
-    }
-    footer { /* Intento genérico para el footer, mantenlo */
-        display: none !important;
-    }
-
-    /* OCULTAR EL BADGE/LINK ESPECÍFICO QUE VA A STREAMLIT.IO/CLOUD */
-    /* Este selector apunta a cualquier tag <a> cuyo atributo href comience con "https://streamlit.io" */
-    a[href^="https://streamlit.io"] {
-        display: none !important;
-    }
-
-    /* OCULTAR EL CONTENEDOR DEL AVATAR DEL CREADOR (si aún es un problema y tiene esa clase) */
-    /* Ya lo tenías, esto es por si sigue siendo relevante: */
-    div[class*="_profileContainer_"] {
-        display: none !important;
-    }
-</style>
-"""
-st.markdown(hide_streamlit_elements_css, unsafe_allow_html=True)
-
 st.markdown(estilos_cabecera_css, unsafe_allow_html=True) # Inyecta todos los estilos
 
 
