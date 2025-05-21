@@ -9,7 +9,7 @@ hide_streamlit_branding = """
 <style>
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
-/* header {visibility: hidden;} */ /* Descomenta esto para ocultar toda la barra superior */
+header {visibility: hidden;} /* Descomenta esto para ocultar toda la barra superior */
                                  /* ¡CUIDADO! Esto también oculta los botones de "Rerun", "Stop" */
 </style>
 """
