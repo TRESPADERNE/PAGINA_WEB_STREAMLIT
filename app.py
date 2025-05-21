@@ -8,7 +8,7 @@ from leerResultados import leerResultadosFaseGrupos, leerTablaClasificacion
 
 
 hide_streamlit_elements_css = """
-<style>   данни <--- ¡ASEGÚRATE DE QUE ESTO ESTÉ AQUÍ!
+<style> 
 
     /* Tus selectores CSS para ocultar elementos */
     .css-1jc7ptx, 
@@ -37,7 +37,7 @@ hide_streamlit_elements_css = """
         display: none !important;
     } */
 
-</style>   данни <--- ¡Y ESTO AL FINAL!
+</style> 
 """
 st.markdown(hide_streamlit_elements_css, unsafe_allow_html=True)
 
