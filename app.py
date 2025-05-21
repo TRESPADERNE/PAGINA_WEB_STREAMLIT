@@ -1,25 +1,34 @@
 import streamlit as st
-from creaHTML import estilosCSS, crear_html_partido, crear_html_clasificacion
+import html
+from creaHTML import estilosCSS, estilos_cabecera_css, crear_html_partido, crear_html_clasificacion
 from autenticacion import autentica
 from leerResultados import leerResultadosFaseGrupos, leerTablaClasificacion
 
 ruta_logo_patrocinador = "app/static/logoFundacionCajaBurgos.png"
-titulo_torneo = "I Torneo Fundación Caja de Burgos BCF CUP Alevín Femenino Ciudad de Burgos"
+titulo_torneo = "I Torneo Fundación Caja de Burgos BCF CUP Alevín Femenino"
 st.logo("static/logo_I_bcfcup_fem.png")
 
+# --- TÍTULO DEL TORNEO DIVIDIDO ---
+titulo_linea_1 = "I Torneo Fundación Caja de Burgos"
+titulo_linea_2 = "BCF CUP Alevín Femenino"
+st.markdown(estilos_cabecera_css, unsafe_allow_html=True)
+
+# Generar el HTML para la cabecera
 html_cabecera = f"""
 <div class="cabecera-torneo">
-    <img src="{ruta_logo_patrocinador}" alt="Logo Patrocinador" class="logo-patrocinador">
-    <div class="titulo-texto">
-        {titulo_torneo.replace("Ciudad de Burgos", "Ciudad<br>de Burgos")}
+    <div class="logo-patrocinador-container">
+        <img src="{ruta_logo_patrocinador}" alt="Logo Patrocinador" class="logo-patrocinador">
+    </div>
+    <div class="titulo-texto-container">
+        <span class="titulo-linea1">{html.escape(titulo_linea_1)}</span>
+        <span class="titulo-linea2">{html.escape(titulo_linea_2)}</span>
     </div>
 </div>
 """
-# Nota: He usado ` ` (non-breaking space) para "de Burgos" si quieres que
-# "de" y "Burgos" intenten quedarse juntos si hay un salto de línea antes.
-# Puedes quitarlo si no es necesario.
+# Asegúrate de tener `import html` al principio de tu script para `html.escape`
 
 st.markdown(html_cabecera, unsafe_allow_html=True)
+
 if st.session_state.get("contador") is None:
     st.session_state.contador = 0
 

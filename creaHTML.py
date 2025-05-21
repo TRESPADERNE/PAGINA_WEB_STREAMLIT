@@ -209,44 +209,69 @@ estilosCSS ="""
     /* .tabla-clasificacion .col-pj, .tabla-clasificacion .col-pe { display: none; } */
     /* .tabla-clasificacion th:nth-child(4), .tabla-clasificacion td:nth-child(4) { display: none; } */ /* PJ */
 }
+
+</style>
+"""
+
+estilos_cabecera_css = """
+<style>
 .cabecera-torneo {
-    display: flex; /* Para alinear logo y texto */
-    align-items: center; /* Centrar verticalmente los elementos */
-    justify-content: center; /* Centrar horizontalmente el contenido general */
-    padding: 15px 0; /* Espaciado vertical */
-    border-bottom: 2px solid #004080; /* Línea divisoria opcional */
+    display: flex;
+    align-items: center; /* Centrar verticalmente el logo y el bloque de texto */
+    padding: 10px 0;    /* Espaciado vertical */
+    border-bottom: 2px solid #004080; /* O el color que prefieras */
     margin-bottom: 20px; /* Espacio debajo de la cabecera */
+    width: 100%;
+}
+
+.cabecera-torneo .logo-patrocinador-container {
+    flex-shrink: 0; /* Para que el logo no se encoja */
+    margin-right: 15px; /* Espacio entre el logo y el texto del título */
+    /* Opcional: si quieres limitar el tamaño del contenedor del logo */
+    /* max-width: 100px; */
 }
 
 .cabecera-torneo img.logo-patrocinador {
-    max-height: 80px; /* Ajusta el tamaño máximo del logo según necesites */
-    /* width: auto; */ /* Para mantener la proporción */
-    margin-right: 20px; /* Espacio entre el logo y el texto */
-    /* flex-shrink: 0; */ /* Para que el logo no se encoja si el texto es largo */
+    display: block; /* Para evitar espacio extra debajo si es inline */
+    max-height: 70px; /* Ajusta el tamaño máximo del logo */
+    width: auto;      /* Para mantener la proporción */
 }
 
-.cabecera-torneo .titulo-texto {
-    text-align: left; /* O 'center' si prefieres el texto centrado respecto a sí mismo */
-    font-size: 1.5em; /* Tamaño del título principal */
+.cabecera-torneo .titulo-texto-container {
+    text-align: left; /* El texto dentro de este contenedor se alinea a la izquierda */
+    line-height: 1.3; /* Espaciado entre las dos líneas del título */
+    /* flex-grow: 1; */ /* Para que ocupe el espacio restante (opcional, puede no ser necesario) */
+}
+
+.cabecera-torneo .titulo-linea1 {
+    font-size: 1.4em; /* Tamaño para la primera línea */
     font-weight: bold;
-    color: #004080; /* Color del título */
-    line-height: 1.3; /* Espaciado entre líneas si el título es multilínea */
+    color: #004080; /* Color para el título */
+    display: block; /* Asegura que sea un bloque para ocupar su línea */
 }
 
-/* Media query para ajustar en pantallas más pequeñas */
-@media (max-width: 768px) {
-    .cabecera-torneo {
-        flex-direction: column; /* Apilar logo y texto verticalmente */
-        text-align: center; /* Centrar todo el contenido */
-    }
+.cabecera-torneo .titulo-linea2 {
+    font-size: 1.4em; /* Tamaño para la primera línea */
+    font-weight: bold;
+    color: #004080; /* Color para el título */
+    display: block; /* Asegura que sea un bloque para ocupar su línea */
+}
+
+/* Ajustes para pantallas más pequeñas si son necesarios */
+/* En este caso, como queremos mantener la disposición, los ajustes serían mínimos */
+@media (max-width: 600px) {
     .cabecera-torneo img.logo-patrocinador {
-        max-height: 60px;
-        margin-right: 0; /* Sin margen derecho cuando está apilado */
-        margin-bottom: 10px; /* Espacio debajo del logo */
+        max-height: 55px; /* Logo un poco más pequeño en móviles */
+        margin-right: 10px; /* Menos espacio */
     }
-    .cabecera-torneo .titulo-texto {
+    .cabecera-torneo .titulo-linea1 {
         font-size: 1.2em;
-        text-align: center; /* Forzar centrado del texto */
+    }
+    .cabecera-torneo .titulo-linea2 {
+        font-size: 1.0em;
+    }
+    .cabecera-torneo {
+        padding: 8px 0;
     }
 }
 </style>
