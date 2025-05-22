@@ -285,10 +285,10 @@ hr.st-hr {
         gap: 20px; /* Reduce el espacio entre logos en móviles */
     }
     .cabecera-torneo-wrapper .titulo-linea1 {
-        font-size: 1.1em; 
+        font-size: 1.4em; 
     }
     .cabecera-torneowrapper .titulo-linea2 {
-        font-size: 1.1em;  
+        font-size: 1.4em;  
     }
     .cabecera-torneo-wrapper::after { /* La línea azul */
         margin-top: 8px;
