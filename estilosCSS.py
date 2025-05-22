@@ -243,14 +243,14 @@ estilos_cabecera_css = """
 }
 
 .cabecera-torneo-wrapper .titulo-linea1 {
-    font-size: 1.4em; 
+    font-size: 1.3em; 
     font-weight: bold;
     color: #004080;
     display: block; /* Para que ocupe su propia línea */
 }
 
 .cabecera-torneo-wrapper .titulo-linea2 {
-    font-size: 1.4em; 
+    font-size: 1.3em; 
     font-weight: bold;
     color: #004080;
     display: block; /* Para que ocupe su propia línea */
@@ -295,7 +295,7 @@ hr.st-hr {
     }
     hr.st-hr {
         margin-top: 8px !important;
-        margin-bottom: 8px !important;
+        margin-bottom: 0px !important;
     }
 }
 </style>
