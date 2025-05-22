@@ -288,7 +288,7 @@ hr.st-hr {
 /* === MEDIA QUERY PARA MÓVILES === */
 @media (max-width: 600px) {
     .cabecera-torneo-wrapper img.logo-patrocinador {
-        height: 45px; /* ALTURA FIJA REDUCIDA para móviles */
+        height: 65px; /* ALTURA FIJA REDUCIDA para móviles */
     }
     .cabecera-torneo-wrapper .logo-patrocinador-container {
         gap: 15px; /* Espacio reducido entre logos en móviles */
