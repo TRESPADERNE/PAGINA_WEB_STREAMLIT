@@ -210,35 +210,46 @@ estilosCSS ="""
 </style>
 """
 
+# En tu archivo donde defines estilosCSS.py o directamente en app.py
+
 estilos_cabecera_css = """
 <style>
 /* === ESTILOS CABECERA === */
-.cabecera-torneo-wrapper { /* Nuevo div wrapper para centrar todo el bloque de cabecera */
+.cabecera-torneo-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra el bloque de logos y el bloque de texto horizontalmente */
-    margin-bottom: 10px; /* Espacio después de toda la cabecera, antes del <hr> */
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 .cabecera-torneo-wrapper .logo-patrocinador-container {
-    display: flex; /* Habilita Flexbox */
-    justify-content: center; /* Centra los logos horizontalmente dentro del contenedor */
-    align-items: center; /* Alinea los logos verticalmente (útil si tienen alturas diferentes) */
-    gap: 20px; /* Espacio entre los logos (ajusta según necesites) */
-    margin-bottom: 8px; /* Espacio entre el contenedor de logos y la primera línea del título */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Alinea los logos verticalmente por su centro */
+    gap: 25px; /* Espacio entre los logos, ajusta si es necesario */
+    margin-bottom: 10px; /* Espacio entre logos y título */
 }
 
+/* ESTILO PRINCIPAL PARA LOS LOGOS DE LA CABECERA */
 .cabecera-torneo-wrapper img.logo-patrocinador {
-    /* display: block;  Ya no es necesario, los flex items se comportan como bloques */
-    /* margin-left: auto; Ya no es necesario */
-    /* margin-right: auto; Ya no es necesario */
-    max-height: 60px; /* Ajusta según necesites */
-    width: auto; /* Mantiene la proporción */
-    object-fit: contain; /* Asegura que la imagen se escale bien sin recortarse, manteniendo la proporción */
+    height: 55px;  /* ALTURA FIJA para ambos logos en escritorio */
+    width: auto;   /* El ancho se ajustará para mantener la proporción */
+    object-fit: contain; /* Asegura que la imagen quepa sin distorsión */
+    vertical-align: middle; /* Ayuda a la alineación vertical dentro del flex item */
 }
+
+/* Si necesitas ajustes finos para un logo específico (generalmente no para altura si ya está fija) */
+/* .cabecera-torneo-wrapper img.logo-torneo { */
+    /* Por ejemplo, si necesitas un margen específico solo para este */
+    /* margin-right: 5px; */ 
+/* } */
+
+/* .cabecera-torneo-wrapper img.logo-fundacion { */
+    /* Estilos específicos si son necesarios */
+/* } */
 
 .cabecera-torneo-wrapper .titulo-texto-container {
-    text-align: center; /* Centra las líneas de texto */
+    text-align: center;
     line-height: 1.3;
 }
 
@@ -246,17 +257,16 @@ estilos_cabecera_css = """
     font-size: 1.3em; 
     font-weight: bold;
     color: #004080;
-    display: block; /* Para que ocupe su propia línea */
+    display: block;
 }
 
 .cabecera-torneo-wrapper .titulo-linea2 {
     font-size: 1.3em; 
     font-weight: bold;
     color: #004080;
-    display: block; /* Para que ocupe su propia línea */
+    display: block;
 }
 
-/* Línea azul debajo de todo el bloque de cabecera (logo + título) */
 .cabecera-torneo-wrapper::after {
     content: "";
     display: block;
@@ -265,7 +275,6 @@ estilos_cabecera_css = """
     background-color: #004080;
     margin-top: 10px; 
 }
-
 
 /* === ESTILOS PARA EL SEPARADOR HR ANTES DE LOS TABS === */
 hr.st-hr { 
@@ -276,26 +285,23 @@ hr.st-hr {
     height: 1px !important;
 }
 
-/* === MEDIA QUERY PARA MÓVILES (Ajustes si son necesarios) === */
+/* === MEDIA QUERY PARA MÓVILES === */
 @media (max-width: 600px) {
     .cabecera-torneo-wrapper img.logo-patrocinador {
-        max-height: 50px; 
+        height: 45px; /* ALTURA FIJA REDUCIDA para móviles */
     }
     .cabecera-torneo-wrapper .logo-patrocinador-container {
-        gap: 20px; /* Reduce el espacio entre logos en móviles */
+        gap: 15px; /* Espacio reducido entre logos en móviles */
     }
-    .cabecera-torneo-wrapper .titulo-linea1 {
-        font-size: 1.2em; 
-    }
+    .cabecera-torneo-wrapper .titulo-linea1,
     .cabecera-torneo-wrapper .titulo-linea2 {
-        font-size: 1.2em;  
+        font-size: 1.15em; /* Tamaño de fuente del título reducido para móviles */
     }
-    .cabecera-torneo-wrapper::after { /* La línea azul */
+    .cabecera-torneo-wrapper::after {
         margin-top: 8px;
     }
     hr.st-hr {
         margin-top: 8px !important;
-        margin-bottom: 0px !important;
     }
 }
 </style>

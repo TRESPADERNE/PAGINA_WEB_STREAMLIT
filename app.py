@@ -5,21 +5,22 @@ from estilosCSS import estilosCSS, estilos_cabecera_css, estilos_logos_finales
 from autenticacion import autentica
 from leerResultados import leerResultadosFaseGrupos, leerTablaClasificacion
 
-st.logo("static/logo_I_bcfcup_fem.png") # Cambia la ruta según tu estructura de carpetas
+# st.logo("static/logo_I_bcfcup_fem.png") # Cambia la ruta según tu estructura de carpetas
 st.markdown(estilos_cabecera_css, unsafe_allow_html=True) # Inyecta todos los estilos
 
 
 # --- Cabecera ---
-ruta_logo_torneo = "app/static/logo_I_bcfcup_fem.png"
+ruta_logo_torneo = "app/static/logo_I_BCF_CUP.png"
 ruta_logo_patrocinador = "app/static/logoFundacionCajaBurgos.png"
 titulo_linea_1 = "I Torneo BCF CUP Alevín Femenino" # Ajustado para que coincida con tu imagen
 titulo_linea_2 = "Fundación Caja de Burgos"      # Ajustado
 
+
 html_cabecera = f"""
 <div class="cabecera-torneo-wrapper"> 
     <div class="logo-patrocinador-container">
-        <img src="{ruta_logo_torneo}" alt="Logo Patrocinador" class="logo-patrocinador">
-        <img src="{ruta_logo_patrocinador}" alt="Logo Patrocinador" class="logo-patrocinador">
+        <img src="{ruta_logo_torneo}" alt="Logo Torneo BCF Cup" class="logo-patrocinador logo-torneo">  
+        <img src="{ruta_logo_patrocinador}" alt="Logo Fundación Caja Burgos" class="logo-patrocinador logo-fundacion"> 
     </div>
     <div class="titulo-texto-container">
         <span class="titulo-linea1">{html.escape(titulo_linea_1)}</span>
