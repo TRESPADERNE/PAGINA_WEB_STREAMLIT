@@ -216,21 +216,25 @@ estilos_cabecera_css = """
 .cabecera-torneo-wrapper { /* Nuevo div wrapper para centrar todo el bloque de cabecera */
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra el logo y el bloque de texto horizontalmente */
+    align-items: center; /* Centra el bloque de logos y el bloque de texto horizontalmente */
     margin-bottom: 10px; /* Espacio después de toda la cabecera, antes del <hr> */
 }
 
 .cabecera-torneo-wrapper .logo-patrocinador-container {
-    margin-bottom: 8px; /* Espacio entre el logo y la primera línea del título */
-    /* text-align: center; /* Para asegurar que el logo esté centrado si su contenedor es más ancho */
+    display: flex; /* Habilita Flexbox */
+    justify-content: center; /* Centra los logos horizontalmente dentro del contenedor */
+    align-items: center; /* Alinea los logos verticalmente (útil si tienen alturas diferentes) */
+    gap: 20px; /* Espacio entre los logos (ajusta según necesites) */
+    margin-bottom: 8px; /* Espacio entre el contenedor de logos y la primera línea del título */
 }
 
 .cabecera-torneo-wrapper img.logo-patrocinador {
-    display: block; /* Para que margin: auto funcione si se quiere centrar */
-    margin-left: auto;
-    margin-right: auto;
+    /* display: block;  Ya no es necesario, los flex items se comportan como bloques */
+    /* margin-left: auto; Ya no es necesario */
+    /* margin-right: auto; Ya no es necesario */
     max-height: 60px; /* Ajusta según necesites */
-    width: auto;
+    width: auto; /* Mantiene la proporción */
+    object-fit: contain; /* Asegura que la imagen se escale bien sin recortarse, manteniendo la proporción */
 }
 
 .cabecera-torneo-wrapper .titulo-texto-container {
@@ -256,44 +260,34 @@ estilos_cabecera_css = """
 .cabecera-torneo-wrapper::after {
     content: "";
     display: block;
-    width: 100%; /* O un porcentaje menor si quieres que no ocupe todo el ancho */
-    /* max-width: 800px; */ /* Opcional: ancho máximo para la línea */
+    width: 100%; 
     height: 2px;
     background-color: #004080;
-    margin-top: 10px; /* Espacio entre el título y esta línea */
-    /* margin-left: auto; */ /* Para centrar la línea si tiene max-width */
-    /* margin-right: auto; */
+    margin-top: 10px; 
 }
 
 
 /* === ESTILOS PARA EL SEPARADOR HR ANTES DE LOS TABS === */
-hr.st-hr { /* Streamlit 1.33+ usa esta clase para el <hr> de st.markdown("---") */
-    margin-top: 10px !important;    /* Espacio encima de la línea sutil */
-    margin-bottom: 10px !important; /* Espacio debajo de la línea sutil, antes de los tabs */
+hr.st-hr { 
+    margin-top: 10px !important;    
+    margin-bottom: 10px !important; 
     border: none !important;
-    border-top: 1px solid #dddddd !important; /* Línea muy sutil */
+    border-top: 1px solid #dddddd !important; 
     height: 1px !important;
 }
-/* Si la clase de arriba no funciona, inspecciona y reemplaza. O usa la alternativa: */
-/*
-.separador-sutil-antes-tabs {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: none;
-    border-top: 1px solid #dddddd;
-    height: 1px;
-}
-*/
 
 /* === MEDIA QUERY PARA MÓVILES (Ajustes si son necesarios) === */
 @media (max-width: 600px) {
     .cabecera-torneo-wrapper img.logo-patrocinador {
         max-height: 50px; 
     }
+    .cabecera-torneo-wrapper .logo-patrocinador-container {
+        gap: 10px; /* Reduce el espacio entre logos en móviles */
+    }
     .cabecera-torneo-wrapper .titulo-linea1 {
         font-size: 1.2em; 
     }
-    .cabecera-torneo-wrapper .titulo-linea2 {
+    .cabecera-torneowrapper .titulo-linea2 {
         font-size: 1.2em;  
     }
     .cabecera-torneo-wrapper::after { /* La línea azul */
@@ -303,15 +297,7 @@ hr.st-hr { /* Streamlit 1.33+ usa esta clase para el <hr> de st.markdown("---") 
         margin-top: 8px !important;
         margin-bottom: 8px !important;
     }
-    /*
-    .separador-sutil-antes-tabs {
-        margin-top: 8px;
-        margin-bottom: 8px;
-    }
-    */
 }
-
-/* ... (tus otros estilos: .match-container, .tabla-clasificacion, etc.) ... */
 </style>
 """
 
