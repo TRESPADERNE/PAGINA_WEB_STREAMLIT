@@ -232,7 +232,7 @@ estilos_cabecera_css = """
 
 /* ESTILO PRINCIPAL PARA LOS LOGOS DE LA CABECERA */
 .cabecera-torneo-wrapper img.logo-patrocinador {
-    height: 55px;  /* ALTURA FIJA para ambos logos en escritorio */
+    height: 90px;  /* ALTURA FIJA para ambos logos en escritorio */
     width: auto;   /* El ancho se ajustará para mantener la proporción */
     object-fit: contain; /* Asegura que la imagen quepa sin distorsión */
     vertical-align: middle; /* Ayuda a la alineación vertical dentro del flex item */
