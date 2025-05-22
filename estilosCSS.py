@@ -270,7 +270,7 @@ estilos_cabecera_css = """
 /* === ESTILOS PARA EL SEPARADOR HR ANTES DE LOS TABS === */
 hr.st-hr { 
     margin-top: 10px !important;    
-    margin-bottom: 10px !important; 
+    margin-bottom: 0px !important; 
     border: none !important;
     border-top: 1px solid #dddddd !important; 
     height: 1px !important;
@@ -282,13 +282,13 @@ hr.st-hr {
         max-height: 50px; 
     }
     .cabecera-torneo-wrapper .logo-patrocinador-container {
-        gap: 10px; /* Reduce el espacio entre logos en móviles */
+        gap: 20px; /* Reduce el espacio entre logos en móviles */
     }
     .cabecera-torneo-wrapper .titulo-linea1 {
-        font-size: 1.2em; 
+        font-size: 1.1em; 
     }
     .cabecera-torneowrapper .titulo-linea2 {
-        font-size: 1.2em;  
+        font-size: 1.1em;  
     }
     .cabecera-torneo-wrapper::after { /* La línea azul */
         margin-top: 8px;
