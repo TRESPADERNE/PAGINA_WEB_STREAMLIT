@@ -49,7 +49,7 @@ tab1, tab2, tab3, tab4 = st.tabs(["**Grupo A**", "**Grupo B**", "**Fase Oro**", 
 css = '''
 <style>
     .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
-    font-size:16px; /* Ajusta el tamaño de fuente de los títulos de las pestañas */
+    font-size:18px; /* Ajusta el tamaño de fuente de los títulos de las pestañas */
     font-weight: bold; /* Pone los títulos en negrita */
     }
 </style>
