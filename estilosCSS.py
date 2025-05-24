@@ -220,6 +220,7 @@ estilos_cabecera_css = """
     flex-direction: column;
     align-items: center;
     margin-bottom: 0px;
+    margin-top: 0px;
 }
 
 .cabecera-torneo-wrapper .logo-patrocinador-container {
