@@ -350,7 +350,7 @@ estilos_resultadosFases = """
         font-size: 1.15em; /* Tamaño de fuente del título reducido para móviles */
     }
     .resultadosFases-wrapper::after {
-        margin-top: 2px;
+        margin-top: 4px;
         margin-bottom: 2px;
     }
     .resultadosFases-wrapper::before {
