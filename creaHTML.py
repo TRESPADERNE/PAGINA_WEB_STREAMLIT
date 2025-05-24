@@ -18,7 +18,7 @@ def cargaLogo(nombre_equipo_original):
     elif nombre_equipo_original == "Gimnástica Segoviana":
         return "app/static/segoviana.png"
     else:
-        raise ValueError(f"Logo no encontrado para el equipo: {nombre_equipo_original}")
+        return "app/static/logo_I_BCF_CUP.png"
     
     
 @st.cache_data # Ahora la caché considerará 'partido' y 'shaded'

@@ -238,16 +238,6 @@ estilos_cabecera_css = """
     vertical-align: middle; /* Ayuda a la alineación vertical dentro del flex item */
 }
 
-/* Si necesitas ajustes finos para un logo específico (generalmente no para altura si ya está fija) */
-/* .cabecera-torneo-wrapper img.logo-torneo { */
-    /* Por ejemplo, si necesitas un margen específico solo para este */
-    /* margin-right: 5px; */ 
-/* } */
-
-/* .cabecera-torneo-wrapper img.logo-fundacion { */
-    /* Estilos específicos si son necesarios */
-/* } */
-
 .cabecera-torneo-wrapper .titulo-texto-container {
     text-align: center;
     line-height: 1.3;
@@ -271,7 +261,7 @@ estilos_cabecera_css = """
     content: "";
     display: block;
     width: 100%; 
-    height: 2px;
+    height: 8px;
     background-color: #004080;
     margin-top: 10px; 
 }
@@ -304,9 +294,79 @@ hr.st-hr {
         margin-top: 8px !important;
     }
 }
+
+
 </style>
 """
 
+estilos_resultadosFases = """
+<style>
+/* === ESTILOS CABECERA === */
+.resultadosFases-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+.resultadosFases-wrapper .titulo-texto-container {
+    text-align: center;
+    line-height: 1.3;
+}
+
+.resultadosFases-wrapper .titulo-linea {
+    font-size: 1.3em; 
+    font-weight: bold;
+    color: #004080;
+    display: block;
+}
+
+.resultadosFases-wrapper::before {
+    content: "";
+    display: block;
+    width: 100%; 
+    height: 2px;
+    background-color: #004080;
+    margin-top: 5px; 
+    margin-bottom: 5px; 
+}
+
+.resultadosFases-wrapper::after {
+    content: "";
+    display: block;
+    width: 100%; 
+    height: 2px;
+    background-color: #004080;
+    margin-top: 5px; 
+    margin-bottom: 5px; 
+}
+
+/* === ESTILOS PARA EL SEPARADOR HR ANTES DE LOS TABS === */
+hr.st-hr { 
+    margin-top: 10px !important;    
+    margin-bottom: 0px !important; 
+    border: none !important;
+    border-top: 1px solid #dddddd !important; 
+    height: 1px !important;
+}
+
+/* === MEDIA QUERY PARA MÓVILES === */
+@media (max-width: 600px) 
+    .resultadosFases-wrapper .titulo-linea {
+        font-size: 1.15em; /* Tamaño de fuente del título reducido para móviles */
+    }
+    .cabecera-torneo-wrapper::after {
+        margin-top: 8px;
+    }
+    hr.st-hr {
+        margin-top: 8px !important;
+    }
+}
+
+
+</style>
+"""
 # Estilos CSS para los logos finales (puedes añadir esto a tu string estilosCSS principal
 # o inyectarlo aquí si solo se usa para esta sección)
 estilos_logos_finales = """
