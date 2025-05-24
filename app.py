@@ -57,7 +57,7 @@ cssTabs = '''
     /* --- NUEVA REGLA PARA REDUCIR EL ESPACIO SUPERIOR --- */
     /* Apunta al contenedor principal del componente de pestañas de Streamlit */
     .stTabs {
-        margin-top: -30px !important; /* Reduce el margen superior. Prueba con 0px primero. */
+        margin-top: -20px !important; /* Reduce el margen superior. Prueba con 0px primero. */
         /* Puedes ajustar este valor según sea necesario.
            Si 0px no es suficiente, prueba con un valor negativo pequeño, por ejemplo:
            margin-top: -10px !important;
