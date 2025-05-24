@@ -357,7 +357,11 @@ hr.st-hr {
     .resultadosFases-wrapper .titulo-linea {
         font-size: 1.15em; /* Tamaño de fuente del título reducido para móviles */
     }
-    .cabecera-torneo-wrapper::after {
+    .resultadosFases-wrapper::after {
+        margin-top: 2px;
+        margin-bottom: 0px;
+    }
+    .resultadosFases-wrapper::before {
         margin-top: 2px;
     }
     hr.st-hr {
