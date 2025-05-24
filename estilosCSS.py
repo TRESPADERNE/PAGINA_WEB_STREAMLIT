@@ -357,7 +357,7 @@ hr.st-hr {
         font-size: 1.15em; /* Tamaño de fuente del título reducido para móviles */
     }
     .cabecera-torneo-wrapper::after {
-        margin-top: 0px;
+        margin-top: 2px;
     }
     hr.st-hr {
         margin-top: 8px !important;
