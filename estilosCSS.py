@@ -339,7 +339,7 @@ estilos_resultadosFases = """
     width: 100%; 
     height: 2px;
     background-color: #004080;
-    margin-top: 5px; 
+    margin-top: 0px; 
     margin-bottom: 0px; 
 }
 
