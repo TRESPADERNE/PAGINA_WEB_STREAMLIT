@@ -339,8 +339,8 @@ estilos_resultadosFases = """
     width: 100%; 
     height: 2px;
     background-color: #004080;
-    margin-top: 0px; 
-    margin-bottom: 0px; 
+    margin-top: 5px; 
+    margin-bottom: 5px; 
 }
 
 /* === ESTILOS PARA EL SEPARADOR HR ANTES DE LOS TABS === */
@@ -359,10 +359,11 @@ hr.st-hr {
     }
     .resultadosFases-wrapper::after {
         margin-top: 2px;
-        margin-bottom: 0px;
+        margin-bottom: 2px;
     }
     .resultadosFases-wrapper::before {
         margin-top: 2px;
+        margin-bottom: 2px;
     }
     hr.st-hr {
         margin-top: 8px !important;
