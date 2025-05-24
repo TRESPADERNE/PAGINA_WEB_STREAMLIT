@@ -340,7 +340,7 @@ estilos_resultadosFases = """
     height: 2px;
     background-color: #004080;
     margin-top: 5px; 
-    margin-bottom: 5px; 
+    margin-bottom: 0px; 
 }
 
 /* === ESTILOS PARA EL SEPARADOR HR ANTES DE LOS TABS === */
