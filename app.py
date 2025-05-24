@@ -48,12 +48,32 @@ st.markdown(estilos_resultadosFases, unsafe_allow_html=True)
 tab1, tab2, tab3, tab4 = st.tabs(["**Grupo A**", "**Grupo B**", "**Fase Oro**", "**Fase Plata**"])
 cssTabs = '''
 <style>
+    /* Estilo original para el texto de las pestañas */
     .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
-    font-size:17px; /* Ajusta el tamaño de fuente de los títulos de las pestañas */
-    font-weight: bold; /* Pone los títulos en negrita */
+        font-size: 17px; /* Ajusta el tamaño de fuente de los títulos de las pestañas */
+        font-weight: bold; /* Pone los títulos en negrita */
+    }
+
+    /* --- NUEVA REGLA PARA REDUCIR EL ESPACIO SUPERIOR --- */
+    /* Apunta al contenedor principal del componente de pestañas de Streamlit */
+    .stTabs {
+        margin-top: -30px !important; /* Reduce el margen superior. Prueba con 0px primero. */
+        /* Puedes ajustar este valor según sea necesario.
+           Si 0px no es suficiente, prueba con un valor negativo pequeño, por ejemplo:
+           margin-top: -10px !important;
+           Ten cuidado con los valores negativos, ya que podrían causar solapamiento
+           con el elemento de arriba si la línea gruesa no tiene suficiente espacio.
+           Un valor positivo pequeño como 5px también podría ser una opción si 0px es demasiado ajustado:
+           margin-top: 5px !important;
+        */
+
+        /* Alternativamente, si el espacio fuera un padding interno del contenedor de pestañas: */
+        /* padding-top: 0px !important; */
+        /* Pero margin-top es más probable para el espacio entre componentes. */
     }
 </style>
 '''
+
 
 st.markdown(cssTabs, unsafe_allow_html=True)
 with tab1:
@@ -64,10 +84,10 @@ with tab1:
         # Opciones para la tabla de clasificación:
         usar_logos_en_tabla = True # Cambia a False si prefieres solo texto
         mapeo_alias_equipos = {
-            "Burgos CF": "BCF",
-            "CD Parquesol": "PARQ",
+            "Burgos CF": "BUR",
+            "CD Parquesol": "PAR",
             "Mullier FCN": "MUL",
-            "CD Palencia FF": "PAL FF"
+            "CD Palencia FF": "PAL"
             # Añade más alias según necesites
         }
         # Descomenta la siguiente línea si no quieres usar alias
@@ -108,10 +128,10 @@ with tab2:
         # Opciones para la tabla de clasificación:
         usar_logos_en_tabla = True # Cambia a False si prefieres solo texto
         mapeo_alias_equipos = {
-            "Burgos CF": "BCF",
-            "CD Parquesol": "PARQ",
-            "Mullier FCN": "MUL",
-            "CD Palencia FF": "PAL FF"
+            'Burgos CF "B"': "BURB",
+            "Gimnástica Segoviana": "GSEG",
+            "Real Valladolid CF": "RVAL",
+            "CD San José": "SJOS"
             # Añade más alias según necesites
         }
         # Descomenta la siguiente línea si no quieres usar alias
