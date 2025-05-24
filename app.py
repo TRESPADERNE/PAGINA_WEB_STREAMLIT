@@ -46,16 +46,16 @@ st.markdown(estilosCSS, unsafe_allow_html=True)
 st.markdown(estilos_resultadosFases, unsafe_allow_html=True)
 
 tab1, tab2, tab3, tab4 = st.tabs(["**Grupo A**", "**Grupo B**", "**Fase Oro**", "**Fase Plata**"])
-css = '''
+cssTabs = '''
 <style>
     .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
-    font-size:20px; /* Ajusta el tamaño de fuente de los títulos de las pestañas */
+    font-size:17px; /* Ajusta el tamaño de fuente de los títulos de las pestañas */
     font-weight: bold; /* Pone los títulos en negrita */
     }
 </style>
 '''
 
-st.markdown(css, unsafe_allow_html=True)
+st.markdown(cssTabs, unsafe_allow_html=True)
 with tab1:
     partidosGA = leerResultadosFaseGrupos(spreadsheet, "Grupo A")
     clasificacionGA = leerTablaClasificacion(spreadsheet, "Grupo A")
