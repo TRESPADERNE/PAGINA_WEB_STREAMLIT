@@ -355,7 +355,7 @@ estilos_resultadosFases = """
     }
     .resultadosFases-wrapper::before {
         margin-top: 2px;
-        margin-bottom: 2px;
+        margin-bottom: -2px;
     }
     hr.st-hr {
         margin-top: 8px !important;
