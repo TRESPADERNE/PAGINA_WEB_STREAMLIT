@@ -68,7 +68,7 @@ cssTabs = '''
         */
 
         /* Alternativamente, si el espacio fuera un padding interno del contenedor de pestañas: */
-        padding-top: 0px !important; 
+        /* padding-top: 0px !important; */
         /* Pero margin-top es más probable para el espacio entre componentes. */
     }
 </style>
