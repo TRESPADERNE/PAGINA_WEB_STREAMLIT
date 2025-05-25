@@ -185,104 +185,81 @@ body {
 
 /* Móviles medianos (tu breakpoint original, ajustado un poco si es necesario) */
 @media (max-width: 600px) {
-    .match-container {
-        /* padding ya es fluido. Si necesitas más compacto: */
-        /* padding: clamp(0.375rem, 1.5vw, 0.5rem) clamp(0.25rem, 1vw, 0.3125rem); /* ej: 6px 4px */
-    }
-
-    .datetime {
-        /* El clamp ya debería ajustarse. Si quieres forzar más pequeño: */
-        /* font-size: clamp(0.75rem, 2vw, 0.8rem); */
-        margin-bottom: 0.375rem; /* 6px */
-    }
-
-    .team {
-        flex-basis: 38%; /* Se puede mantener este ajuste o dejar que flexbox y min-width de score decidan */
-    }
+    /* ... (reglas existentes, pero revisa los clamp MINs) ... */
 
     .team-name {
-        /* El clamp ya debería ajustarse. Si quieres forzar más pequeño: */
-        /* font-size: clamp(0.75rem, 2.8vw, 0.85rem); */
-        margin: 0 clamp(0.1875rem, 1vw, 0.25rem); /* ej: 0 3px a 0 4px */
-        white-space: normal; /* Importante: permitir que el texto se divida en líneas */
+        /* Antes: clamp(0.75rem, 2.8vw, 0.85rem); en tu anterior 600px */
+        /* Probemos un mínimo un poco más grande */
+        font-size: clamp(0.8rem, 2.8vw, 0.9rem); /* Mínimo 12.8px, preferido ~11px en 393px, máximo 14.4px */
+        /* Ajusta 2.8vw si es necesario para que no se vaya al mínimo tan rápido en 393px */
+        /* Quizás 3vw o 3.2vw para que sea un poco más grande en 393px, y el MIN sea el tope inferior */
+        /* font-size: clamp(0.8rem, 3.2vw, 0.9rem);  3.2vw de 393px = ~12.5px */
+        margin: 0 clamp(0.1875rem, 1vw, 0.25rem);
+        white-space: normal;
         overflow: visible;
         text-overflow: clip;
-        max-width: none; /* Permitir que el texto use el espacio disponible en flex */
+        max-width: none;
         line-height: 1.15;
     }
 
     .logo {
-        /* El clamp ya debería ajustarse. Si quieres forzar más pequeño: */
-        /* width: clamp(1.25rem, 4.5vw, 1.5rem); ej: 20px a 24px */
-        /* height: clamp(1.25rem, 4.5vw, 1.5rem); */
+        /* Antes: clamp(1.25rem, 4.5vw, 1.5rem); en tu anterior 600px */
+        width: clamp(1.25rem, 5vw, 1.625rem); /* Mínimo 20px, preferido ~19.6px en 393px, máximo 26px */
+        height: clamp(1.25rem, 5vw, 1.625rem);
     }
 
     .score {
-        /* El clamp ya debería ajustarse. Si quieres forzar más pequeño: */
-        /* font-size: clamp(1.3rem, 4.5vw, 1.6rem); */
-        /* min-width: clamp(35px, 8vw, 50px); */
-        padding: 0 clamp(0.1rem, 0.4vw, 0.125rem); /* ej: 0 1.5px a 0 2px */
-        flex-basis: 20%; /* Puede necesitar más espacio si los nombres de equipo se encogen */
+        /* Antes: clamp(1.3rem, 4.5vw, 1.6rem); en tu anterior 600px */
+        font-size: clamp(1.375rem, 5.5vw, 1.75rem); /* Mínimo 22px, preferido ~21.6px en 393px, máximo 28px */
+        min-width: clamp(45px, 11vw, 55px); /* Ajusta este min-width */
     }
 
     .penalty-score {
-        /* El clamp ya debería ajustarse. Si quieres forzar más pequeño: */
-        /* font-size: clamp(0.65rem, 1.8vw, 0.75rem); */
-        margin-top: 0.125rem; /* 2px */
+        font-size: clamp(0.75rem, 2.2vw, 0.85rem); /* Mínimo 12px */
     }
 
     /* Tabla de Clasificación en móviles medianos */
     .tabla-clasificacion {
-        /* El clamp ya debería ajustarse. Si quieres forzar más pequeño: */
-        /* font-size: clamp(0.7rem, 2.2vw, 0.8rem); */
+        font-size: clamp(0.8rem, 2.5vw, 0.9rem); /* Mínimo 12.8px */
     }
     .tabla-clasificacion th, .tabla-clasificacion td {
-        /* El clamp ya debería ajustarse. Si quieres forzar más pequeño: */
-        /* padding: clamp(0.1875rem, 0.8vw, 0.25rem) clamp(0.0625rem, 0.5vw, 0.125rem); ej: 3px 1px a 4px 2px */
+        padding: clamp(0.25rem, 1vw, 0.375rem) clamp(0.125rem, 0.8vw, 0.25rem);
     }
     .tabla-clasificacion td.col-equipo .logo-clasificacion {
-        /* El clamp ya debería ajustarse. Si quieres forzar más pequeño: */
-        /* width: clamp(0.9375rem, 3vw, 1.125rem); ej: 15px a 18px */
-        /* height: clamp(0.9375rem, 3vw, 1.125rem); */
-        /* margin-right: clamp(0.125rem, 0.8vw, 0.1875rem); ej: 2px a 3px */
+        width: clamp(1.125rem, 3.5vw, 1.25rem); /* Mínimo 18px */
+        height: clamp(1.125rem, 3.5vw, 1.25rem);
     }
-    /* Ocultar columnas menos importantes en móviles (mantenido como comentario) */
-    /* .tabla-clasificacion .col-pj, .tabla-clasificacion .col-pe { display: none; } */
-    /* .tabla-clasificacion th:nth-child(4), .tabla-clasificacion td:nth-child(4) { display: none; } */ /* PJ */
 }
 
-/* Móviles más pequeños (ej. hasta 480px) */
-@media (max-width: 480px) {
-    /* Aquí los valores MÍNIMOS de clamp serán los más relevantes.
-       Ajusta los valores base de clamp si ves que algo queda demasiado grande/pequeño. */
-
-    .team {
-        flex-basis: 37%; /* Podrías necesitar ajustar los flex-basis más agresivamente */
-    }
-    .score {
-        flex-basis: 22%;
-        /* Asegurar que el score no sea demasiado pequeño */
-        font-size: clamp(1.2rem, 4vw, 1.4rem); /* Ajusta el mínimo de clamp si es necesario */
-    }
+/* Móviles más pequeños (ej. para anchos POR DEBAJO de ~380px, como 320px, 360px) */
+/* Originalmente tenías esto como max-width: 480px, pero para el Edge 20 (393px)
+   las reglas anteriores podrían ser más adecuadas. Este breakpoint es para pantallas aún más pequeñas. */
+@media (max-width: 380px) {
+    /* Aquí sí pueden ir tamaños más pequeños, pero aún legibles */
     .team-name {
-        /* Asegurar que el nombre no sea demasiado pequeño */
-        font-size: clamp(0.7rem, 2.5vw, 0.8rem); /* Ajusta el mínimo de clamp */
+        font-size: clamp(0.75rem, 3vw, 0.85rem); /* Mínimo 12px. 3vw de 360px = ~10.8px, así que irá al mínimo */
     }
     .logo {
-        width: clamp(1.125rem, 4vw, 1.25rem); /* 18px a 20px */
-        height: clamp(1.125rem, 4vw, 1.25rem);
+        width: clamp(1.125rem, 4.5vw, 1.375rem); /* Mínimo 18px */
+        height: clamp(1.125rem, 4.5vw, 1.375rem);
+    }
+    .score {
+        font-size: clamp(1.25rem, 5vw, 1.5rem); /* Mínimo 20px */
+        min-width: clamp(40px, 10vw, 50px);
+    }
+    .penalty-score {
+        font-size: clamp(0.7rem, 2vw, 0.8rem); /* Mínimo 11.2px */
     }
 
-    /* Ajustes finos para la tabla en móviles muy pequeños */
     .tabla-clasificacion {
-        font-size: clamp(0.65rem, 2vw, 0.75rem); /* ej: 10.4px, escala, max 12px */
+        font-size: clamp(0.7rem, 2.2vw, 0.8rem); /* Mínimo 11.2px */
     }
      .tabla-clasificacion th, .tabla-clasificacion td {
-        padding: clamp(0.125rem, 0.6vw, 0.1875rem) clamp(0.05rem, 0.4vw, 0.1rem); /* ej: 2px ~1px a 3px ~1.5px */
+        padding: clamp(0.1875rem, 0.8vw, 0.25rem) clamp(0.1rem, 0.5vw, 0.125rem);
     }
     .tabla-clasificacion td.col-equipo .logo-clasificacion {
-        width: clamp(0.875rem, 2.8vw, 1rem); /* 14px a 16px */
-        height: clamp(0.875rem, 2.8vw, 1rem);
+        width: clamp(1rem, 3vw, 1.125rem); /* Mínimo 16px */
+        height: clamp(1rem, 3vw, 1.125rem);
     }
 }
 

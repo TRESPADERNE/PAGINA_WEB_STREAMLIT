@@ -282,7 +282,7 @@ def leerTablaClasificacion(_spreadsheet, nombreHoja):
         for fila in datos_filas:
             fila_limpia = []
             for i, valor_celda in enumerate(fila):
-                # Si la columna es 'POSICIÓN', 'PUNTOS', 'PJ', 'PG', 'PE', 'PP', 'GF', 'GC', 'DG'
+                # Si la columna es 'POS', 'PTS', 'PJ', 'PG', 'PE', 'PP', 'GF', 'GC', 'DG'
                 # podrías intentar convertir a int, pero para st.table/st.dataframe, strings suelen estar bien.
                 # Aquí solo hacemos un strip básico.
                 fila_limpia.append(str(valor_celda).strip())
