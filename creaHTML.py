@@ -21,8 +21,29 @@ def cargaLogo(nombre_equipo_original):
         return "app/static/logo_I_BCF_CUP.png"
     
     
+@st.cache_data # Ahora la caché considerará 'ruta_logo_torneo' y 'ruta_logo_patrocinador'
+def crearHTMLCabecera():
+    ruta_logo_torneo = "app/static/logo_I_BCF_CUP.png"
+    ruta_logo_patrocinador = "app/static/logoFundacionCajaBurgos.png"
+    titulo_linea_1 = "I Torneo BCF CUP Alevín Femenino" # Ajustado para que coincida con tu imagen
+    titulo_linea_2 = "Fundación Caja de Burgos"      # Ajustado
+
+    html_cabecera = f"""
+    <div class="cabecera-torneo-wrapper"> 
+        <div class="logo-patrocinador-container">
+            <img src="{ruta_logo_torneo}" alt="Logo Torneo BCF Cup" class="logo-patrocinador logo-torneo">  
+            <img src="{ruta_logo_patrocinador}" alt="Logo Fundación Caja Burgos" class="logo-patrocinador logo-fundacion"> 
+        </div>
+        <div class="titulo-texto-container">
+            <span class="titulo-linea1">{html.escape(titulo_linea_1)}</span>
+            <span class="titulo-linea2">{html.escape(titulo_linea_2)}</span>
+        </div>
+    </div>
+    """
+    return html_cabecera
+
 @st.cache_data # Ahora la caché considerará 'partido' y 'shaded'
-def crear_html_partido(partido, shaded=False): # <--- AÑADIDO parámetro 'shaded'
+def crearHTMLPartido(partido, shaded=False): # <--- AÑADIDO parámetro 'shaded'
     """
     Genera el bloque HTML para un partido.
     Añade una clase 'shaded' al contenedor principal si shaded es True.
@@ -164,3 +185,33 @@ def crear_html_clasificacion(clasificacion_data, usar_logos=False, alias_equipos
     html_tabla += "</div>" # Cierre de tabla-clasificacion-container
     
     return html_tabla
+
+@st.cache_data
+def crearHTMLTitulosPartidos(titulo):
+    htmlTitulo = f"""
+    <div class="resultadosFases-wrapper"> 
+        <div class="titulo-texto-container">
+            <span class="titulo-linea">{titulo}</span>
+        </div>
+    </div>
+    """
+    return htmlTitulo
+
+@st.cache_data
+def crearHTMLLogosFinales():
+    ruta_logo_final_1 = "app/static/molinotejada.png"
+    ruta_logo_final_2 = "app/static/ezsa.png"
+    alt_logo_1 = "Molino Tejada"
+    alt_logo_2 = "Ezsa Sanidad Ambiental"
+
+    # HTML para los logos, incluyendo un <hr> personalizado
+    html_logos_finales = f"""
+    <hr class="custom-hr-dentro-html"> 
+    <div class='subheader-compacto'><h3>Con la colaboración de:</h3></div>
+    <div class="logos-finales-container">
+        <img src="{ruta_logo_final_1}" alt="{html.escape(alt_logo_1)}">
+        <img src="{ruta_logo_final_2}" alt="{html.escape(alt_logo_2)}">
+    </div>
+    """
+    return html_logos_finales
+
