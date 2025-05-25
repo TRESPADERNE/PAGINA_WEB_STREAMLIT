@@ -183,83 +183,108 @@ body {
     }
 }
 
-/* Móviles medianos (tu breakpoint original, ajustado un poco si es necesario) */
 @media (max-width: 600px) {
-    /* ... (reglas existentes, pero revisa los clamp MINs) ... */
+    .match-container {
+        /* Padding ya es fluido, pero si necesitas un mínimo mayor: */
+        /* padding: clamp(0.4rem, 1.5vw, 0.5rem) clamp(0.3rem, 1vw, 0.375rem); */
+    }
+
+    .datetime {
+        font-size: clamp(0.8125rem, 2.5vw, 0.9375rem); /* MIN: 13px, MAX: 15px */
+        margin-bottom: 0.375rem; /* 6px */
+    }
+
+    .team {
+        flex-basis: 39%; /* O ajusta según sea necesario */
+    }
 
     .team-name {
-        /* Antes: clamp(0.75rem, 2.8vw, 0.85rem); en tu anterior 600px */
-        /* Probemos un mínimo un poco más grande */
-        font-size: clamp(0.8rem, 2.8vw, 0.9rem); /* Mínimo 12.8px, preferido ~11px en 393px, máximo 14.4px */
-        /* Ajusta 2.8vw si es necesario para que no se vaya al mínimo tan rápido en 393px */
-        /* Quizás 3vw o 3.2vw para que sea un poco más grande en 393px, y el MIN sea el tope inferior */
-        /* font-size: clamp(0.8rem, 3.2vw, 0.9rem);  3.2vw de 393px = ~12.5px */
-        margin: 0 clamp(0.1875rem, 1vw, 0.25rem);
+        /* MIN: 13.6px (0.85rem) a 14px (0.875rem), PREFERRED puede ser 3vw o 3.2vw */
+        font-size: clamp(0.875rem, 3.2vw, 1rem); /* MIN: 14px, MAX: 16px */
+        /* 3.2vw de 393px = 12.57px -> se irá al MIN de 14px */
+        margin: 0 clamp(0.25rem, 1.2vw, 0.375rem); /* ej: 0 4px a 0 6px */
         white-space: normal;
         overflow: visible;
         text-overflow: clip;
         max-width: none;
-        line-height: 1.15;
+        line-height: 1.2; /* Un poco más de espacio entre líneas si se rompe */
     }
 
     .logo {
-        /* Antes: clamp(1.25rem, 4.5vw, 1.5rem); en tu anterior 600px */
-        width: clamp(1.25rem, 5vw, 1.625rem); /* Mínimo 20px, preferido ~19.6px en 393px, máximo 26px */
-        height: clamp(1.25rem, 5vw, 1.625rem);
+        /* MIN: 22px (1.375rem) a 24px (1.5rem) */
+        width: clamp(1.375rem, 5.5vw, 1.75rem); /* MIN: 22px, MAX: 28px */
+        height: clamp(1.375rem, 5.5vw, 1.75rem);
+        /* 5.5vw de 393px = 21.6px -> se irá al MIN de 22px */
     }
 
     .score {
-        /* Antes: clamp(1.3rem, 4.5vw, 1.6rem); en tu anterior 600px */
-        font-size: clamp(1.375rem, 5.5vw, 1.75rem); /* Mínimo 22px, preferido ~21.6px en 393px, máximo 28px */
-        min-width: clamp(45px, 11vw, 55px); /* Ajusta este min-width */
+        /* MIN: 24px (1.5rem) a 26px (1.625rem) */
+        font-size: clamp(1.5rem, 6vw, 1.875rem); /* MIN: 24px, MAX: 30px */
+        /* 6vw de 393px = 23.58px -> se irá al MIN de 24px */
+        min-width: clamp(50px, 12vw, 60px);
+        padding: 0 clamp(0.125rem, 0.5vw, 0.25rem);
+        flex-basis: 20%;
     }
 
     .penalty-score {
-        font-size: clamp(0.75rem, 2.2vw, 0.85rem); /* Mínimo 12px */
+        font-size: clamp(0.8rem, 2.2vw, 0.9rem); /* MIN: 12.8px, MAX: 14.4px */
+        margin-top: 0.1875rem; /* 3px */
     }
 
     /* Tabla de Clasificación en móviles medianos */
     .tabla-clasificacion {
-        font-size: clamp(0.8rem, 2.5vw, 0.9rem); /* Mínimo 12.8px */
+        font-size: clamp(0.8125rem, 2.5vw, 0.9375rem); /* MIN: 13px, MAX: 15px */
     }
     .tabla-clasificacion th, .tabla-clasificacion td {
-        padding: clamp(0.25rem, 1vw, 0.375rem) clamp(0.125rem, 0.8vw, 0.25rem);
+        padding: clamp(0.3125rem, 1vw, 0.4375rem) clamp(0.1875rem, 0.8vw, 0.3125rem); /* MIN: 5px 3px, MAX: 7px 5px */
     }
     .tabla-clasificacion td.col-equipo .logo-clasificacion {
-        width: clamp(1.125rem, 3.5vw, 1.25rem); /* Mínimo 18px */
-        height: clamp(1.125rem, 3.5vw, 1.25rem);
+        /* MIN: 18px (1.125rem) a 20px (1.25rem) */
+        width: clamp(1.125rem, 4vw, 1.375rem); /* MIN: 18px, MAX: 22px */
+        height: clamp(1.125rem, 4vw, 1.375rem);
+        margin-right: clamp(0.25rem, 1vw, 0.3125rem);
     }
 }
 
-/* Móviles más pequeños (ej. para anchos POR DEBAJO de ~380px, como 320px, 360px) */
-/* Originalmente tenías esto como max-width: 480px, pero para el Edge 20 (393px)
-   las reglas anteriores podrían ser más adecuadas. Este breakpoint es para pantallas aún más pequeñas. */
+/* Móviles más pequeños (ej. para anchos POR DEBAJO de ~380px, AFECTARÁ A XIAOMI A1/A3) */
+/* ¡SI ESTO SE VE BIEN EN XIAOMI, NO LO TOQUES MUCHO! */
 @media (max-width: 380px) {
-    /* Aquí sí pueden ir tamaños más pequeños, pero aún legibles */
+    .datetime {
+        /* Original de la propuesta anterior: clamp(0.75rem, 2.5vw, 0.85rem) */
+        /* Si 12px es bueno, mantenlo o ajusta mínimamente */
+        font-size: clamp(0.75rem, 2.8vw, 0.85rem); /* MIN: 12px. 2.8vw de 360px = 10.08px -> 12px */
+    }
     .team-name {
-        font-size: clamp(0.75rem, 3vw, 0.85rem); /* Mínimo 12px. 3vw de 360px = ~10.8px, así que irá al mínimo */
+        /* Original: clamp(0.75rem, 3vw, 0.85rem); MIN: 12px */
+        font-size: clamp(0.75rem, 3.2vw, 0.875rem); /* MIN: 12px. 3.2vw de 360px = 11.52px -> 12px. MAX: 14px */
     }
     .logo {
-        width: clamp(1.125rem, 4.5vw, 1.375rem); /* Mínimo 18px */
-        height: clamp(1.125rem, 4.5vw, 1.375rem);
+        /* Original: clamp(1.125rem, 4.5vw, 1.375rem); MIN: 18px */
+        width: clamp(1.125rem, 5vw, 1.375rem); /* MIN: 18px. 5vw de 360px = 18px. MAX: 22px */
+        height: clamp(1.125rem, 5vw, 1.375rem);
     }
     .score {
-        font-size: clamp(1.25rem, 5vw, 1.5rem); /* Mínimo 20px */
-        min-width: clamp(40px, 10vw, 50px);
+        /* Original: clamp(1.25rem, 5vw, 1.5rem); MIN: 20px */
+        font-size: clamp(1.375rem, 5.5vw, 1.625rem); /* MIN: 22px. 5.5vw de 360px = 19.8px -> 22px. MAX: 26px */
+        min-width: clamp(45px, 11vw, 55px); /* 11vw de 360 = 39.6px -> 45px */
     }
     .penalty-score {
-        font-size: clamp(0.7rem, 2vw, 0.8rem); /* Mínimo 11.2px */
+        /* Original: clamp(0.7rem, 2vw, 0.8rem); MIN: 11.2px */
+        font-size: clamp(0.7rem, 2.2vw, 0.8rem); /* MIN: 11.2px. 2.2vw de 360 = 7.92px -> 11.2px */
     }
 
     .tabla-clasificacion {
-        font-size: clamp(0.7rem, 2.2vw, 0.8rem); /* Mínimo 11.2px */
+        /* Original: clamp(0.7rem, 2.2vw, 0.8rem); MIN: 11.2px */
+        font-size: clamp(0.7rem, 2.5vw, 0.8125rem); /* MIN: 11.2px. 2.5vw de 360 = 9px -> 11.2px. MAX: 13px */
     }
      .tabla-clasificacion th, .tabla-clasificacion td {
-        padding: clamp(0.1875rem, 0.8vw, 0.25rem) clamp(0.1rem, 0.5vw, 0.125rem);
+        /* Original: padding: clamp(0.1875rem, 0.8vw, 0.25rem) clamp(0.1rem, 0.5vw, 0.125rem); */
+        padding: clamp(0.25rem, 0.8vw, 0.3125rem) clamp(0.125rem, 0.5vw, 0.1875rem); /* MIN: 4px 2px */
     }
     .tabla-clasificacion td.col-equipo .logo-clasificacion {
-        width: clamp(1rem, 3vw, 1.125rem); /* Mínimo 16px */
-        height: clamp(1rem, 3vw, 1.125rem);
+        /* Original: clamp(1rem, 3vw, 1.125rem); MIN: 16px */
+        width: clamp(1rem, 3.2vw, 1.125rem);   /* MIN: 16px. 3.2vw de 360 = 11.52px -> 16px. MAX: 18px */
+        height: clamp(1rem, 3.2vw, 1.125rem);
     }
 }
 
