@@ -20,6 +20,13 @@ def main():
 
     spreadsheet = autentica()
 
+    hide_streamlit_footer = """
+                <style>
+                [data-testid="stToolbar"] {visibility: hidden !important;}
+                footer {visibility: hidden !important;}
+                </style>
+                """
+    st.markdown(hide_streamlit_footer, unsafe_allow_html=True)
 
     hide_streamlit_style = """
     <style>
