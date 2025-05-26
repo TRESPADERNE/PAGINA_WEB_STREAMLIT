@@ -20,43 +20,40 @@ def main():
 
     spreadsheet = autentica()
 
-    import streamlit as st
-
-    hide_streamlit_style = """
+    hide_streamlit_style = f"""
             <style>
-                /* Hide the Streamlit header and menu */
-                header {
-                    display: none !important; /* Cambio clave aquí */
-                }
-                /* Optionally, hide the footer */
-                .streamlit-footer {
+                /* Ocultar la cabecera de Streamlit */
+                header {{
                     display: none !important;
-                }
-                /* Hide your specific div class, if it's still necessary */
-                /* Si .st-emotion-cache-uf99v8 era el header o parte de él,
-                   la regla de 'header' ya podría ser suficiente.
-                   Si es otro elemento, mantenla. */
-                .st-emotion-cache-uf99v8 {
-                    display: none !important;
-                }
+                }}
 
-                /* Reduce el padding superior del contenedor principal del contenido */
-                /* Streamlit >1.12.0 usa esto */
-                div.block-container {
-                    padding-top: 1rem !important; /* Puedes probar con 0rem o 0.5rem si quieres menos espacio */
-                    margin-top: 0rem !important; /* A veces también hay un margen */
-                }
-                /* Para versiones más antiguas de Streamlit, a veces el selector es más genérico */
-                /*
-                .main .block-container {
-                    padding-top: 1rem !important;
-                }
+                /* Ocultar el pie de página de Streamlit (opcional) */
+                .streamlit-footer {{
+                    display: none !important;
+                }}
+
+                /* Ocultar tu clase específica si aún es necesaria */
+                .st-emotion-cache-uf99v8 {{
+                    display: none !important;
+                }}
+
+                /* Reducir el padding superior del contenedor principal de la vista de la aplicación.
+                   Este es el cambio clave para versiones más recientes de Streamlit (>=1.33.0).
+                   Ajusta el valor de padding-top según necesites (e.g., 0rem, 0.5rem, 1rem).
                 */
-                /* O incluso directamente sobre el main */
+                div[data-testid="stAppViewContainer"] {{
+                    padding-top: 0.5rem !important; /* Prueba con 0rem si quieres eliminarlo completamente */
+                }}
+
                 /*
-                .main {
+                Ajuste adicional para el contenedor de bloques si el anterior no es suficiente
+                o si quieres controlar el padding interno más finamente.
+                En muchos casos, ajustar stAppViewContainer es suficiente.
+                */
+                /*
+                div.block-container {{
                     padding-top: 1rem !important;
-                }
+                }}
                 */
             </style>
             """
