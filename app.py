@@ -20,40 +20,44 @@ def main():
 
     spreadsheet = autentica()
 
-    hide_streamlit_style = f"""
+
+    hide_streamlit_style = """
             <style>
                 /* Ocultar la cabecera de Streamlit */
-                header {{
+                header {
                     display: none !important;
-                }}
+                }
 
                 /* Ocultar el pie de página de Streamlit (opcional) */
-                .streamlit-footer {{
+                .streamlit-footer {
                     display: none !important;
-                }}
+                }
 
-                /* Ocultar tu clase específica si aún es necesaria */
-                .st-emotion-cache-uf99v8 {{
+                /* Ocultar tu clase específica si aún es necesaria y correcta.
+                   Si .st-emotion-cache-uf99v8 era parte de la cabecera,
+                   la regla 'header' ya podría ser suficiente. */
+                .st-emotion-cache-uf99v8 {
                     display: none !important;
-                }}
+                }
 
                 /* Reducir el padding superior del contenedor principal de la vista de la aplicación.
                    Este es el cambio clave para versiones más recientes de Streamlit (>=1.33.0).
                    Ajusta el valor de padding-top según necesites (e.g., 0rem, 0.5rem, 1rem).
                 */
-                div[data-testid="stAppViewContainer"] {{
-                    padding-top: 0.5rem !important; /* Prueba con 0rem si quieres eliminarlo completamente */
-                }}
+                div[data-testid="stAppViewContainer"] {
+                    padding-top: 0.5rem !important; /* Prueba con 0rem o un valor muy pequeño */
+                }
 
                 /*
-                Ajuste adicional para el contenedor de bloques si el anterior no es suficiente
-                o si quieres controlar el padding interno más finamente.
+                Ajuste adicional para el contenedor de bloques si el anterior no es suficiente.
                 En muchos casos, ajustar stAppViewContainer es suficiente.
+                Verifica con el inspector de elementos si aún hay un padding no deseado
+                en este elemento (div.block-container).
                 */
                 /*
-                div.block-container {{
+                div.block-container {
                     padding-top: 1rem !important;
-                }}
+                }
                 */
             </style>
             """
