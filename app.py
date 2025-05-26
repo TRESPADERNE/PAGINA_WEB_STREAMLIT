@@ -20,18 +20,49 @@ def main():
 
     spreadsheet = autentica()
 
+    import streamlit as st
+
     hide_streamlit_style = """
             <style>
                 /* Hide the Streamlit header and menu */
-                header {visibility: hidden;}
+                header {
+                    display: none !important; /* Cambio clave aquí */
+                }
                 /* Optionally, hide the footer */
-                .streamlit-footer {display: none;}
-                /* Hide your specific div class, replace class name with the one you identified */
-                .st-emotion-cache-uf99v8 {display: none;}
+                .streamlit-footer {
+                    display: none !important;
+                }
+                /* Hide your specific div class, if it's still necessary */
+                /* Si .st-emotion-cache-uf99v8 era el header o parte de él,
+                   la regla de 'header' ya podría ser suficiente.
+                   Si es otro elemento, mantenla. */
+                .st-emotion-cache-uf99v8 {
+                    display: none !important;
+                }
+
+                /* Reduce el padding superior del contenedor principal del contenido */
+                /* Streamlit >1.12.0 usa esto */
+                div.block-container {
+                    padding-top: 1rem !important; /* Puedes probar con 0rem o 0.5rem si quieres menos espacio */
+                    margin-top: 0rem !important; /* A veces también hay un margen */
+                }
+                /* Para versiones más antiguas de Streamlit, a veces el selector es más genérico */
+                /*
+                .main .block-container {
+                    padding-top: 1rem !important;
+                }
+                */
+                /* O incluso directamente sobre el main */
+                /*
+                .main {
+                    padding-top: 1rem !important;
+                }
+                */
             </style>
             """
 
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 
     # Inyección de estilos CSS
     st.markdown(estilosCSSCabecera(), unsafe_allow_html=True) # Inyecta todos los estilos
