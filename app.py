@@ -8,16 +8,30 @@ from datosTorneo import denominacionesFase
 
 
 def main():
-    if "contador" not in st.session_state:
-        st.session_state.contador = 0
+    # if "contador" not in st.session_state:
+    #     st.session_state.contador = 0
 
-    if st.query_params.get("reset") == "true":  
-        st.session_state.contador = 1
-        st.query_params.reset = "false"
+    # if st.query_params.get("reset") == "true":  
+    #     st.session_state.contador = 1
+    #     st.query_params.reset = "false"
 
-    if st.session_state.contador == 1:
-        st.write("¡Bienvenido al Torneo de Fútbol Sala! Aquí podrás seguir los resultados y las fases del torneo.")
+    # if st.session_state.contador == 1:
+    #     st.write("¡Bienvenido.")
+
     spreadsheet = autentica()
+
+    hide_streamlit_style = """
+            <style>
+                /* Hide the Streamlit header and menu */
+                header {visibility: hidden;}
+                /* Optionally, hide the footer */
+                .streamlit-footer {display: none;}
+                /* Hide your specific div class, replace class name with the one you identified */
+                .st-emotion-cache-uf99v8 {display: none;}
+            </style>
+            """
+
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
     # Inyección de estilos CSS
     st.markdown(estilosCSSCabecera(), unsafe_allow_html=True) # Inyecta todos los estilos
