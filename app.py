@@ -45,7 +45,7 @@ def main():
                    Ajusta el valor de padding-top según necesites (e.g., 0rem, 0.5rem, 1rem).
                 */
                 div[data-testid="stAppViewContainer"] {
-                    padding-top: 0.5rem !important; /* Prueba con 0rem o un valor muy pequeño */
+                    padding-top: -1.5rem !important; /* Prueba con 0rem o un valor muy pequeño */
                 }
 
                 /*
