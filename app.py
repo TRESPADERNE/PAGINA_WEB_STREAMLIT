@@ -22,45 +22,53 @@ def main():
 
 
     hide_streamlit_style = """
-            <style>
-                /* Ocultar la cabecera de Streamlit */
-                header {
-                    display: none !important;
-                }
+    <style>
+        /* Forzar la ocultación de la cabecera */
+        header {
+            display: none !important;
+            visibility: hidden !important; /* Por si acaso display:none no es suficiente para algún sub-elemento */
+            height: 0px !important;
+            padding: 0px !important;
+            margin: 0px !important;
+        }
 
-                /* Ocultar el pie de página de Streamlit (opcional) */
-                .streamlit-footer {
-                    display: none !important;
-                }
+        /* Eliminar padding y margen del cuerpo y html, a veces ayuda */
+        html, body {
+            padding-top: 0px !important;
+            margin-top: 0px !important;
+        }
 
-                /* Ocultar tu clase específica si aún es necesaria y correcta.
-                   Si .st-emotion-cache-uf99v8 era parte de la cabecera,
-                   la regla 'header' ya podría ser suficiente. */
-                .st-emotion-cache-uf99v8 {
-                    display: none !important;
-                }
+        /* Contenedor principal de la aplicación Streamlit */
+        /* Este es el más importante después de 'header' */
+        div[data-testid="stAppViewContainer"] {
+            padding-top: 0rem !important; /* ¡Prueba con 0rem primero! */
+            margin-top: 0rem !important;
+        }
 
-                /* Reducir el padding superior del contenedor principal de la vista de la aplicación.
-                   Este es el cambio clave para versiones más recientes de Streamlit (>=1.33.0).
-                   Ajusta el valor de padding-top según necesites (e.g., 0rem, 0.5rem, 1rem).
-                */
-                div[data-testid="stAppViewContainer"] {
-                    padding-top: -1.5rem !important; /* Prueba con 0rem o un valor muy pequeño */
-                }
+        /* Contenedor del contenido principal (donde van tus st.write, etc.) */
+        div.block-container {
+            padding-top: 0.5rem !important; /* Un poco de padding aquí puede ser bueno, o prueba 0rem */
+            margin-top: 0rem !important;
+        }
 
-                /*
-                Ajuste adicional para el contenedor de bloques si el anterior no es suficiente.
-                En muchos casos, ajustar stAppViewContainer es suficiente.
-                Verifica con el inspector de elementos si aún hay un padding no deseado
-                en este elemento (div.block-container).
-                */
-                /*
-                div.block-container {
-                    padding-top: 1rem !important;
-                }
-                */
-            </style>
-            """
+        /* A veces hay un elemento 'main' envolviendo */
+        section.main {
+            padding-top: 0rem !important;
+            margin-top: 0rem !important;
+        }
+
+        /* Ocultar el pie de página (opcional) */
+        .streamlit-footer {
+            display: none !important;
+        }
+
+        /* Tu clase específica, si sigue siendo relevante */
+        .st-emotion-cache-uf99v8 { /* Reemplaza si identificas otra clase */
+            display: none !important;
+        }
+
+    </style>
+"""
 
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
