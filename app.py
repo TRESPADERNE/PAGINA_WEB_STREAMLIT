@@ -8,10 +8,15 @@ from datosTorneo import denominacionesFase
 
 
 def main():
+    if "contador" not in st.session_state:
+        st.session_state.contador = 0
+
     if st.query_params.get("reset") == "true":  
-        # clear_leeCelda()
+        st.session_state.contador = 1
         st.query_params.reset = "false"
 
+    if st.session_state.contador == 1:
+        st.write("¡Bienvenido al Torneo de Fútbol Sala! Aquí podrás seguir los resultados y las fases del torneo.")
     spreadsheet = autentica()
 
     # Inyección de estilos CSS
