@@ -41,8 +41,8 @@ def main():
         /* Contenedor principal de la aplicación Streamlit */
         /* Este es el más importante después de 'header' */
         div[data-testid="stAppViewContainer"] {
-            padding-top: 0rem !important; /* ¡Prueba con 0rem primero! */
-            margin-top: 0rem !important;
+            padding-top: -2rem !important; /* ¡Prueba con 0rem primero! */
+            margin-top: -2rem !important;
         }
 
         /* Contenedor del contenido principal (donde van tus st.write, etc.) */
