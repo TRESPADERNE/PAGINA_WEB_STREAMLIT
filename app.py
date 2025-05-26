@@ -66,6 +66,17 @@ def main():
         .st-emotion-cache-uf99v8 { /* Reemplaza si identificas otra clase */
             display: none !important;
         }
+        div[data-testid="stStatusWidget"] {
+        display: none !important;
+        visibility: hidden !important; /* Por si acaso */
+        }
+
+        /* A veces, el texto "Made with Streamlit" está en un elemento separado
+        o el footer general también necesita ser ocultado. */
+        .streamlit-footer { /* Este ya lo tenías, pero asegúrate que está activo */
+            display: none !important;
+            visibility: hidden !important;
+        }
 
     </style>
 """
