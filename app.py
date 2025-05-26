@@ -42,7 +42,7 @@ def main():
         /* Este es el más importante después de 'header' */
         div[data-testid="stAppViewContainer"] {
             padding-top: -2rem !important; /* ¡Prueba con 0rem primero! */
-            margin-top: -2rem !important;
+            margin-top: -4rem !important;
         }
 
         /* Contenedor del contenido principal (donde van tus st.write, etc.) */
