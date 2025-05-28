@@ -42,7 +42,7 @@ def main():
     ahora = datetime.now() + timedelta(hours=2)
     fecha_hora_minutos_str = ahora.strftime("%Y-%m-%d %H:%M")
     
-    st.markdown(f"Última consulta: **{fecha_hora_minutos_str}**"
+    st.markdown(f"Última consulta: **{fecha_hora_minutos_str}**")
       
     if st.button("🔄 **ACTUALIZAR**", use_container_width=True):
         st.rerun()
