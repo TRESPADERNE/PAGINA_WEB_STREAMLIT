@@ -27,35 +27,25 @@ def main():
     with server_state_lock["reload"]:
         if "reload" not in server_state:
             server_state.reload = 0
-        if "timeAnterior" not in server_state:
-            server_state.timeAnterior = time.time()
-        if "timeActual" not in server_state:
-            # Obtener dia y hora actual
-            server_state.timeActual = time.time()
 
     if st.query_params.get("reset") == "true":  
         st.cache_data.clear()
         time.sleep(2) 
         ejecutaTabs(spreadsheet)
         time.sleep(2) 
-        server_state.timeAnterior = server_state.timeActual
-        server_state.timeActual = time.time()
         server_state.reload = (server_state.reload + 1) % 2
 
     
     # Inyección de estilos CSS
     inyectaEstilos()
     st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
-    minutosUltimaActualizacion = int((server_state.timeActual - server_state.timeAnterior) / 60)
-    st.write(f"Tiempo: {minutosUltimaActualizacion}")
     ahora = datetime.now() + timedelta(hours=2)
     fecha_hora_minutos_str = ahora.strftime("%Y-%m-%d %H:%M")
-    st.write(f"Última actualización: {fecha_hora_minutos_str}")
     
     col1, col2 = st.columns([1, 2]) # El botón ocupará 1/3 y el texto 2/3 del espacio
 
     with col1:
-        if st.button("🔄 Actualizar Resultados", use_container_width=True):
+        if st.button("🔄 Última actualización: **{fecha_hora_minutos_str}**", use_container_width=True):
             st.rerun()
     with col2:
         st.markdown(
