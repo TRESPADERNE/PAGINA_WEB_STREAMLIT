@@ -32,7 +32,7 @@ def widgetUltimaActualizacion():
             </div>
             """, unsafe_allow_html=True)
       
-    if st.button("🔄 **ACTUALIZAR**", use_container_width=True):
+    if st.button("🔄 **ACTUALIZA**", use_container_width=True):
         st.rerun()
 
 def main():
