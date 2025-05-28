@@ -50,8 +50,8 @@ def main():
          
         # server_state.reload = (server_state.reload + 1) % 2
 
-    # _ = server_state.reload
     else:
+        _ = server_state.reload
         inyectaEstilos()
         st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
         
