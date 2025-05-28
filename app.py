@@ -19,8 +19,8 @@ def main():
     # Cabecera
     st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
 
-    st.write(st.query_params.get("reset"))  
-    
+    # st.write(st.query_params.get("reset"))  
+
     with server_state_lock["reload"]:
         if "reload" not in server_state:
             server_state.reload = 0
