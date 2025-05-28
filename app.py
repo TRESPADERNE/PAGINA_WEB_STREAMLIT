@@ -41,7 +41,7 @@ def main():
         if "reload" not in server_state:
             server_state.reload = 0
 
-    if st.query_params.get("reset") == "true":  
+    if st.query_params.get(st.secrets['query']['key']) == st.secrets['query']['value']:  
         st.cache_data.clear()
         time.sleep(2) 
         ejecutaTabs(spreadsheet)
