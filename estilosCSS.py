@@ -420,7 +420,7 @@ def estilosCSSCabecera():
     /* === ESTILOS PARA EL SEPARADOR HR ANTES DE LOS TABS === */
     hr.st-hr { 
         margin-top: 10px !important;    
-        margin-bottom: 0px !important; 
+        margin-bottom: 2px !important; 
         border: none !important;
         border-top: 1px solid #dddddd !important; 
         height: 1px !important;

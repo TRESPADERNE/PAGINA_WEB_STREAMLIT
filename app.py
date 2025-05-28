@@ -43,7 +43,7 @@ def main():
     fecha_hora_minutos_str = ahora.strftime("%Y-%m-%d %H:%M")
     
     
-    if st.button(f"🔄 Última actualización: **{fecha_hora_minutos_str}**", use_container_width=True):
+    if st.button(f"🔄 Última consulta: **{fecha_hora_minutos_str}**", use_container_width=True):
         st.rerun()
     
     ejecutaTabs(spreadsheet)
