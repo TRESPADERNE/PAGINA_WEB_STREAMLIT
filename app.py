@@ -8,15 +8,14 @@ from datosTorneo import denominacionesFase
 
 from streamlit_server_state import server_state, server_state_lock
 
-
 def main():
-
     with server_state_lock["reload"]:
         if "reload" not in server_state:
             server_state.reload = 0
 
     if st.query_params.get("reset") == "true":  
         st.query_params.reset = "false"
+        st.write(st.query_params.reset)
         st.cache_data.clear()
         server_state.reload = (server_state.reload + 1) % 2
 
