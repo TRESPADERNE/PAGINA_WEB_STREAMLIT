@@ -41,8 +41,12 @@ def main():
     st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
     ahora = datetime.now() + timedelta(hours=2)
     fecha_hora_minutos_str = ahora.strftime("%Y-%m-%d %H:%M")
-    
-    st.markdown(f"Última consulta: **{fecha_hora_minutos_str}**")
+    st.markdown(
+            f"""
+            <div style="margin-top: 0.5em;"> 
+                Última consulta: <b>{fecha_hora_minutos_str}</b>
+            </div>
+            """, unsafe_allow_html=True)
       
     if st.button("🔄 **ACTUALIZAR**", use_container_width=True):
         st.rerun()
