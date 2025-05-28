@@ -45,7 +45,7 @@ def main():
     col1, col2 = st.columns([1, 2]) # El botón ocupará 1/3 y el texto 2/3 del espacio
 
     with col1:
-        if st.button("🔄 Última actualización: **{fecha_hora_minutos_str}**", use_container_width=True):
+        if st.button(f"🔄 Última actualización: **{fecha_hora_minutos_str}**", use_container_width=True):
             st.rerun()
     with col2:
         st.markdown(
