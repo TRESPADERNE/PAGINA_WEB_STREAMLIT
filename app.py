@@ -45,7 +45,7 @@ def main():
         time.sleep(2)
         # ejecutaTabs(spreadsheet)
          
-        # server_state.reload = (server_state.reload + 1) % 2
+        server_state.reload = (server_state.reload + 1) % 2
 
     # _ = server_state.reload
     inyectaEstilos()
