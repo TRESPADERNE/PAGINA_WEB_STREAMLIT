@@ -6,6 +6,7 @@ from autenticacion import autentica
 
 from datosTorneo import denominacionesFase
 
+from streamlit_autorefresh import st_autorefresh
 
 def main():
     # if "contador" not in st.session_state:
@@ -14,6 +15,7 @@ def main():
     if st.query_params.get("reset") == "true":  
         st.query_params.reset = "false"
         st.cache_data.clear()
+        st_autorefresh(interval=2000, limit=1, key="clearCaches")
 
     # if st.session_state.contador == 1:
     #     st.write("¡Bienvenido.")
