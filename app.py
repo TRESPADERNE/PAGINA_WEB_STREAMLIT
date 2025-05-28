@@ -30,7 +30,7 @@ def main():
             server_state.timeAnterior = time.time()
         if "timeActual" not in server_state:
             # Obtener dia y hora actual
-            server_state.timeActual =
+            server_state.timeActual = time.time()
 
     if st.query_params.get("reset") == "true":  
         st.cache_data.clear()
