@@ -22,6 +22,19 @@ def ejecutaTabs(spreadsheet):
     with tab4:
         tabFasesFinales(spreadsheet, "Fase Plata", ["Semifinales Fase Plata", "Final Fase Plata", "Tercer y Cuarto Puesto Fase Plata"])
 
+def widgetUltimaActualizacion():
+    ahora = datetime.now() + timedelta(hours=2)
+    fecha_hora_minutos_str = ahora.strftime("%Y-%m-%d %H:%M")
+    st.markdown(
+            f"""
+            <div style="margin-top: 0.5em;"> 
+                Última consulta: <b>{fecha_hora_minutos_str}</b>
+            </div>
+            """, unsafe_allow_html=True)
+      
+    if st.button("🔄 **ACTUALIZAR**", use_container_width=True):
+        st.rerun()
+
 def main():
     spreadsheet = autentica()
     with server_state_lock["reload"]:
@@ -35,22 +48,11 @@ def main():
         time.sleep(2) 
         server_state.reload = (server_state.reload + 1) % 2
 
-    
-    # Inyección de estilos CSS
     inyectaEstilos()
     st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
-    ahora = datetime.now() + timedelta(hours=2)
-    fecha_hora_minutos_str = ahora.strftime("%Y-%m-%d %H:%M")
-    st.markdown(
-            f"""
-            <div style="margin-top: 0.5em;"> 
-                Última consulta: <b>{fecha_hora_minutos_str}</b>
-            </div>
-            """, unsafe_allow_html=True)
-      
-    if st.button("🔄 **ACTUALIZAR**", use_container_width=True):
-        st.rerun()
     
+    widgetUltimaActualizacion()
+
     ejecutaTabs(spreadsheet)
     st.markdown(crearHTMLLogosFinales(), unsafe_allow_html=True)
 
