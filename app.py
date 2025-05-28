@@ -51,6 +51,19 @@ def main():
     ahora = datetime.now() + timedelta(hours=2)
     fecha_hora_minutos_str = ahora.strftime("%Y-%m-%d %H:%M")
     st.write(f"Última actualización: {fecha_hora_minutos_str}")
+    
+    col1, col2 = st.columns([1, 2]) # El botón ocupará 1/3 y el texto 2/3 del espacio
+
+    with col1:
+        if st.button("🔄 Actualizar Resultados", use_container_width=True):
+            st.rerun()
+    with col2:
+        st.markdown(
+            f"""
+            <div style="margin-top: 0.5em;"> 
+                Última actualización: <b>{fecha_hora_minutos_str}</b>
+            </div>
+            """, unsafe_allow_html=True)
     ejecutaTabs(spreadsheet)
     st.markdown(crearHTMLLogosFinales(), unsafe_allow_html=True)
 
