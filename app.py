@@ -4,7 +4,8 @@ from creaHTML import crearHTMLCabecera, crearHTMLLogosFinales
 from estilosCSS import inyectaEstilos
 from autenticacion import autentica
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
+
 from datosTorneo import denominacionesFase
 
 from streamlit_server_state import server_state, server_state_lock
@@ -47,7 +48,7 @@ def main():
     st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
     minutosUltimaActualizacion = int((server_state.timeActual - server_state.timeAnterior) / 60)
     st.write(f"Tiempo: {minutosUltimaActualizacion}")
-    ahora = datetime.now()
+    ahora = datetime.now() + timedelta(hours=2)
     fecha_hora_minutos_str = ahora.strftime("%Y-%m-%d %H:%M")
     st.write(f"Última actualización: {fecha_hora_minutos_str}")
     ejecutaTabs(spreadsheet)
