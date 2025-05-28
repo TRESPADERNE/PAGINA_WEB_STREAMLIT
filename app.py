@@ -35,13 +35,13 @@ def main():
     # Inyección de estilos CSS
     inyectaEstilos()
 
-    ejecutaTabs(spreadsheet)
+    
 
     # Cabecera
     st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
 
 
-
+    ejecutaTabs(spreadsheet)
 
     
  
