@@ -25,7 +25,7 @@ def main():
         if "reload" not in server_state:
             server_state.reload = 0
 
-    if st.query_params["reset"] == "true":  
+    if st.query_params.get("reset") == "true":  
         st.cache_data.clear()
         server_state.reload = (server_state.reload + 1) % 2
 
