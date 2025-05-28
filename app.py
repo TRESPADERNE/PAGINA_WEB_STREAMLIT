@@ -11,9 +11,9 @@ def main():
     # if "contador" not in st.session_state:
     #     st.session_state.contador = 0
 
-    # if st.query_params.get("reset") == "true":  
-    #     st.session_state.contador = 1
-    #     st.query_params.reset = "false"
+    if st.query_params.get("reset") == "true":  
+        st.query_params.reset = "false"
+        st.cache_data.clear()
 
     # if st.session_state.contador == 1:
     #     st.write("¡Bienvenido.")
