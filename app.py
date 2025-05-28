@@ -25,22 +25,26 @@ def main():
     with server_state_lock["reload"]:
         if "reload" not in server_state:
             server_state.reload = 0
-        if "time" not in server_state:
-            server_state.time = time.time()
+        if "timeAnterior" not in server_state:
+            server_state.timeAnterior = time.time()
+        if "timeActual" not in server_state:
+            server_state.timeActual = time.time()
 
     if st.query_params.get("reset") == "true":  
         st.cache_data.clear()
         time.sleep(2) 
         ejecutaTabs(spreadsheet)
         time.sleep(2) 
-        server_state.time = (time.time() - server_state.time)//60
+        server_state.timeAnterior = server_state.timeActual
+        server_state.timeActual = time.time()
         server_state.reload = (server_state.reload + 1) % 2
 
     
     # Inyección de estilos CSS
     inyectaEstilos()
     st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
-    st.write(f"Tiempo: {server_state.time}")
+    minutosUltimaActualizacion = (server_state.timeActual - server_state.timeAnterior) // 60
+    st.write(f"Tiempo: {minutosUltimaActualizacion")
     st.write(f"Recargas: {server_state.reload}")
     ejecutaTabs(spreadsheet)
     st.markdown(crearHTMLLogosFinales(), unsafe_allow_html=True)
