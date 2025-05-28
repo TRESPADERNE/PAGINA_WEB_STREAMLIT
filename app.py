@@ -36,9 +36,9 @@ def widgetUltimaActualizacion():
 
 def main():
     spreadsheet = autentica()
-    # with server_state_lock["reload"]:
-    #     if "reload" not in server_state:
-    #         server_state.reload = 0
+    with server_state_lock["reload"]:
+        if "reload" not in server_state:
+            server_state.reload = 0
 
     if st.query_params.get(st.secrets['query']['key']) == st.secrets['query']['value']:  
         st.cache_data.clear()
