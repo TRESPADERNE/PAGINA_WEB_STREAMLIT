@@ -197,12 +197,16 @@ def crearHTMLTitulosPartidos(titulo):
     """
     return htmlTitulo
 
-@st.cache_resource
+#@st.cache_resource
 def crearHTMLLogosFinales():
     ruta_logo_final_1 = "app/static/molinotejada.png"
     ruta_logo_final_2 = "app/static/ezsa.png"
+    ruta_logo_final_3 = "app/static/nb.jpg"
+    ruta_logo_final_4 = "app/static/diputacion.jpg"
     alt_logo_1 = "Molino Tejada"
     alt_logo_2 = "Ezsa Sanidad Ambiental"
+    alt_logo_3 = "Grupo NB"
+    alt_logo_4 = "Diputación de Burgos"
 
     # HTML para los logos, incluyendo un <hr> personalizado
     html_logos_finales = f"""
@@ -211,6 +215,10 @@ def crearHTMLLogosFinales():
     <div class="logos-finales-container">
         <img src="{ruta_logo_final_1}" alt="{html.escape(alt_logo_1)}">
         <img src="{ruta_logo_final_2}" alt="{html.escape(alt_logo_2)}">
+    </div>
+    <div class="logos-finales-container">
+        <img src="{ruta_logo_final_3}" alt="{html.escape(alt_logo_1)}">
+        <img src="{ruta_logo_final_4}" alt="{html.escape(alt_logo_2)}">
     </div>
     """
     return html_logos_finales
