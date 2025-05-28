@@ -360,7 +360,7 @@ def estilosCSSGrupos():
 
 # En tu archivo donde defines estilosCSS.py o directamente en app.py
 
-@st.cache_resource
+#@st.cache_resource
 def estilosCSSCabecera():
     estilos = """
     <style>
