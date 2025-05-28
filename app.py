@@ -8,26 +8,7 @@ from datosTorneo import denominacionesFase
 
 from streamlit_server_state import server_state, server_state_lock
 
-def main():
-    with server_state_lock["reload"]:
-        if "reload" not in server_state:
-            server_state.reload = 0
-
-    if st.query_params.get("reset") == "true":  
-        st.cache_data.clear()
-        server_state.reload = (server_state.reload + 1) % 2
-
-    spreadsheet = autentica()
-
-    # Inyección de estilos CSS
-    inyectaEstilos()
-
-    # Cabecera
-    st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
-
-
-
-
+def ejecutaTabs(spreadsheet):
     tab1, tab2, tab3, tab4 = st.tabs(denominacionesFase())
 
     with tab1:
@@ -38,6 +19,31 @@ def main():
         tabFasesFinales(spreadsheet, "Fase Oro", ["Semifinales", "Final", "Tercer y Cuarto Puesto"])
     with tab4:
         tabFasesFinales(spreadsheet, "Fase Plata", ["Semifinales Fase Plata", "Final Fase Plata", "Tercer y Cuarto Puesto Fase Plata"])
+
+def main():
+    spreadsheet = autentica()
+    with server_state_lock["reload"]:
+        if "reload" not in server_state:
+            server_state.reload = 0
+
+    if st.query_params.get("reset") == "true":  
+        st.cache_data.clear()
+        ejecutaTabs(spreadsheet)
+        server_state.reload = (server_state.reload + 1) % 2
+
+    
+    # Inyección de estilos CSS
+    inyectaEstilos()
+
+    ejecutaTabs(spreadsheet)
+
+    # Cabecera
+    st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
+
+
+
+
+    
  
     
     st.markdown(crearHTMLLogosFinales(), unsafe_allow_html=True)
