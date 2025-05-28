@@ -29,7 +29,7 @@ def main():
         st.cache_data.clear()
         server_state.reload = (server_state.reload + 1) % 2
 
-    st.write(st.query_params["reset"])    
+    st.write(st.query_params)    
 
     tab1, tab2, tab3, tab4 = st.tabs(denominacionesFase())
 
