@@ -7,7 +7,6 @@ import time
 from datetime import datetime, timedelta
 
 from datosTorneo import denominacionesFase
-
 from streamlit_server_state import server_state, server_state_lock
 
 def ejecutaTabs(spreadsheet):
@@ -37,16 +36,16 @@ def widgetUltimaActualizacion():
 
 def main():
     spreadsheet = autentica()
-    with server_state_lock["reload"]:
-        if "reload" not in server_state:
-            server_state.reload = 0
+    # with server_state_lock["reload"]:
+    #     if "reload" not in server_state:
+    #         server_state.reload = 0
 
     if st.query_params.get(st.secrets['query']['key']) == st.secrets['query']['value']:  
         st.cache_data.clear()
         time.sleep(2) 
         ejecutaTabs(spreadsheet)
         time.sleep(2) 
-        server_state.reload = (server_state.reload + 1) % 2
+        # server_state.reload = (server_state.reload + 1) % 2
 
     inyectaEstilos()
     st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
