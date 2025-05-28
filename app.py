@@ -3,7 +3,7 @@ from tabs import tabFaseGrupos, tabFasesFinales
 from creaHTML import crearHTMLCabecera, crearHTMLLogosFinales
 from estilosCSS import inyectaEstilos
 from autenticacion import autentica
-
+import time
 from datosTorneo import denominacionesFase
 
 from streamlit_server_state import server_state, server_state_lock
@@ -28,24 +28,15 @@ def main():
 
     if st.query_params.get("reset") == "true":  
         st.cache_data.clear()
+        time.sleep(2) 
         ejecutaTabs(spreadsheet)
         server_state.reload = (server_state.reload + 1) % 2
 
     
     # Inyección de estilos CSS
     inyectaEstilos()
-
-    
-
-    # Cabecera
     st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
-
-
     ejecutaTabs(spreadsheet)
-
-    
- 
-    
     st.markdown(crearHTMLLogosFinales(), unsafe_allow_html=True)
 
 
