@@ -197,7 +197,7 @@ def crearHTMLTitulosPartidos(titulo):
     """
     return htmlTitulo
 
-#@st.cache_resource
+@st.cache_resource
 def crearHTMLLogosFinales():
     ruta_logo_final_1 = "app/static/molinotejada.png"
     ruta_logo_final_2 = "app/static/ezsa.png"
