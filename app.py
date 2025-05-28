@@ -50,13 +50,14 @@ def main():
         # server_state.reload = (server_state.reload + 1) % 2
 
     # _ = server_state.reload
-    inyectaEstilos()
-    st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
-    
-    widgetUltimaActualizacion()
+    else:
+        inyectaEstilos()
+        st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
+        
+        widgetUltimaActualizacion()
 
-    ejecutaTabs(spreadsheet)
-    st.markdown(crearHTMLLogosFinales(), unsafe_allow_html=True)
+        ejecutaTabs(spreadsheet)
+        st.markdown(crearHTMLLogosFinales(), unsafe_allow_html=True)
 
 
 if __name__ == "__main__":
