@@ -369,7 +369,7 @@ def estilosCSSCabecera():
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-bottom: 4px;
+        margin-bottom: 0px;
         margin-top: 0px;
     }
 
