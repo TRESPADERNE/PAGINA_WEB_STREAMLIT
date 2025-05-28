@@ -36,8 +36,6 @@ def widgetUltimaActualizacion():
 
 def main():
     spreadsheet = autentica()
-    
-
     if st.query_params.get(st.secrets['query']['key']) == st.secrets['query']['value']:  
         with server_state_lock["reload"]:
             if "reload" not in server_state:
@@ -51,7 +49,8 @@ def main():
         # server_state.reload = (server_state.reload + 1) % 2
 
     else:
-        _ = server_state.reload
+        if "reload" in server_state:
+            _ = server_state.reload  
         inyectaEstilos()
         st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
         
