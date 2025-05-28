@@ -49,8 +49,11 @@ def main():
         # server_state.reload = (server_state.reload + 1) % 2
 
     else:
-        if "reload" in server_state:
-            _ = server_state.reload  
+        try:
+            if "reload" in server_state:
+                _ = server_state.reload  
+        except Exception as e:
+            st.write(e)
         inyectaEstilos()
         st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
         
