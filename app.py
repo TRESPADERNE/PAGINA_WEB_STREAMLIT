@@ -42,9 +42,9 @@ def main():
 
     if st.query_params.get(st.secrets['query']['key']) == st.secrets['query']['value']:  
         st.cache_data.clear()
-        time.sleep(2) 
-        ejecutaTabs(spreadsheet)
-        time.sleep(2) 
+        time.sleep(2)
+        # ejecutaTabs(spreadsheet)
+         
         # server_state.reload = (server_state.reload + 1) % 2
 
     # _ = server_state.reload
