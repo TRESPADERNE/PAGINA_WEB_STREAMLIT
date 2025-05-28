@@ -53,7 +53,7 @@ def main():
             if "reload" in server_state:
                 _ = server_state.reload  
         except Exception as e:
-            st.write(e)
+            pass
         inyectaEstilos()
         st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
         
