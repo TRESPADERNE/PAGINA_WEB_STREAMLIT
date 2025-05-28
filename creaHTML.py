@@ -217,8 +217,8 @@ def crearHTMLLogosFinales():
         <img src="{ruta_logo_final_2}" alt="{html.escape(alt_logo_2)}">
     </div>
     <div class="logos-finales-container">
-        <img src="{ruta_logo_final_3}" alt="{html.escape(alt_logo_1)}">
-        <img src="{ruta_logo_final_4}" alt="{html.escape(alt_logo_2)}">
+        <img src="{ruta_logo_final_3}" alt="{html.escape(alt_logo_3)}">
+        <img src="{ruta_logo_final_4}" alt="{html.escape(alt_logo_4)}">
     </div>
     """
     return html_logos_finales
