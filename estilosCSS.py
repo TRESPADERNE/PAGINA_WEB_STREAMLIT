@@ -1,6 +1,6 @@
 import streamlit as st
 
-@st.cache_data
+@st.cache_resource
 def estiloOCultaCabecera():
     estilos = """
     <style>
@@ -63,7 +63,7 @@ def estiloOCultaCabecera():
     """
     return estilos
 
-@st.cache_data # Ahora la caché considerará 'partido' y 'shaded'
+@st.cache_resource
 def estilosCSSGrupos():
     estilos ="""
     <style>
@@ -360,7 +360,7 @@ def estilosCSSGrupos():
 
 # En tu archivo donde defines estilosCSS.py o directamente en app.py
 
-@st.cache_data
+@st.cache_resource
 def estilosCSSCabecera():
     estilos = """
     <style>
@@ -451,7 +451,7 @@ def estilosCSSCabecera():
     """
     return estilos
 
-@st.cache_data
+@st.cache_resource
 def estilosCSSResultadosFases():
     estilos = """
     <style>
@@ -521,7 +521,7 @@ def estilosCSSResultadosFases():
     return estilos
 
 
-@st.cache_data
+@st.cache_resource
 def estilosCSSLogosFinales():
     estilos = """
     <style>
@@ -579,7 +579,7 @@ def estilosCSSLogosFinales():
     """
     return estilos
 
-@st.cache_data
+@st.cache_resource
 def estilosCSSTabs():
     estilos = '''
     <style>

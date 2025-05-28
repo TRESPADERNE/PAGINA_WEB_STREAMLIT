@@ -1,7 +1,7 @@
 import html # Para html.escape
 import streamlit as st
 
-@st.cache_data
+@st.cache_resource
 def cargaLogo(nombre_equipo_original):
     if nombre_equipo_original == "CD Palencia FF":
         return "app/static/palencia.jpg"
@@ -21,7 +21,7 @@ def cargaLogo(nombre_equipo_original):
         return "app/static/logo_I_BCF_CUP.png"
     
     
-@st.cache_data # Ahora la caché considerará 'ruta_logo_torneo' y 'ruta_logo_patrocinador'
+@st.cache_resource
 def crearHTMLCabecera():
     ruta_logo_torneo = "app/static/logo_I_BCF_CUP.png"
     ruta_logo_patrocinador = "app/static/logoFundacionCajaBurgos.png"
@@ -186,7 +186,7 @@ def crear_html_clasificacion(clasificacion_data, usar_logos=False, alias_equipos
     
     return html_tabla
 
-@st.cache_data
+@st.cache_resource
 def crearHTMLTitulosPartidos(titulo):
     htmlTitulo = f"""
     <div class="resultadosFases-wrapper"> 
@@ -197,7 +197,7 @@ def crearHTMLTitulosPartidos(titulo):
     """
     return htmlTitulo
 
-@st.cache_data
+@st.cache_resource
 def crearHTMLLogosFinales():
     ruta_logo_final_1 = "app/static/molinotejada.png"
     ruta_logo_final_2 = "app/static/ezsa.png"

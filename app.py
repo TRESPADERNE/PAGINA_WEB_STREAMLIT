@@ -9,7 +9,13 @@ from datosTorneo import denominacionesFase
 from streamlit_server_state import server_state, server_state_lock
 
 def main():
+    with server_state_lock["reload"]:
+        if "reload" not in server_state:
+            server_state.reload = 0
 
+    if st.query_params.get("reset") == "true":  
+        st.cache_data.clear()
+        server_state.reload = (server_state.reload + 1) % 2
 
     spreadsheet = autentica()
 
@@ -19,19 +25,8 @@ def main():
     # Cabecera
     st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
 
-    # st.write(st.query_params.get("reset"))  
 
-    with server_state_lock["reload"]:
-        if "reload" not in server_state:
-            server_state.reload = 0
 
-    st.write(st.query_params)
-    
-    if st.query_params.get("reset") == "true":  
-        st.cache_data.clear()
-        server_state.reload = (server_state.reload + 1) % 2
-
-    st.write(st.query_params)    
 
     tab1, tab2, tab3, tab4 = st.tabs(denominacionesFase())
 

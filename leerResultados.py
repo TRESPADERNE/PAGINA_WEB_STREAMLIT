@@ -241,6 +241,8 @@ def leerResultadosFaseGrupos(_spreadsheet, nombreHoja):
     return lista_partidos_completa
 
 # @st.cache_data # Cachear los datos leídos de la hoja
+
+@st.cache_data
 def leerTablaClasificacion(_spreadsheet, nombreHoja):
     """
     Lee los datos de la tabla de clasificación de una hoja de Google Sheets.
