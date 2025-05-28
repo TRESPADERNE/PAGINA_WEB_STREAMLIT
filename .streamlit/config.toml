@@ -2,5 +2,4 @@
 textColor="#000000"
 [server]
 enableStaticServing = true
-[runner]
-fastReruns = false
+
