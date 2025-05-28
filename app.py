@@ -44,7 +44,7 @@ def main():
     inyectaEstilos()
     st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
     minutosUltimaActualizacion = (server_state.timeActual - server_state.timeAnterior) // 60
-    st.write(f"Tiempo: {minutosUltimaActualizacion")
+    st.write(f"Tiempo: {minutosUltimaActualizacion}")
     st.write(f"Recargas: {server_state.reload}")
     ejecutaTabs(spreadsheet)
     st.markdown(crearHTMLLogosFinales(), unsafe_allow_html=True)
