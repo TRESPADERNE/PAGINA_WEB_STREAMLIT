@@ -45,9 +45,9 @@ def main():
         time.sleep(2) 
         ejecutaTabs(spreadsheet)
         time.sleep(2) 
-        # server_state.reload = (server_state.reload + 1) % 2
+        server_state.reload = (server_state.reload + 1) % 2
 
-    # _ = server_state.reload
+    _ = server_state.reload
     inyectaEstilos()
     st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
     
