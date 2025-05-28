@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 
 from datosTorneo import denominacionesFase
 from streamlit_server_state import server_state, server_state_lock
+from streamlit_server_state.session_info import NoSessionError
 
 def ejecutaTabs(spreadsheet):
     tab1, tab2, tab3, tab4 = st.tabs(denominacionesFase())
@@ -52,7 +53,7 @@ def main():
         try:
             if "reload" in server_state:
                 _ = server_state.reload  
-        except Exception as e:
+        except NoSessionError:
             pass
         inyectaEstilos()
         st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
