@@ -4,6 +4,7 @@ from creaHTML import crearHTMLCabecera, crearHTMLLogosFinales
 from estilosCSS import inyectaEstilos
 from autenticacion import autentica
 import time
+from datetime import datetime
 from datosTorneo import denominacionesFase
 
 from streamlit_server_state import server_state, server_state_lock
@@ -28,7 +29,8 @@ def main():
         if "timeAnterior" not in server_state:
             server_state.timeAnterior = time.time()
         if "timeActual" not in server_state:
-            server_state.timeActual = time.time()
+            # Obtener dia y hora actual
+            server_state.timeActual =
 
     if st.query_params.get("reset") == "true":  
         st.cache_data.clear()
@@ -43,9 +45,11 @@ def main():
     # Inyección de estilos CSS
     inyectaEstilos()
     st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
-    minutosUltimaActualizacion = (server_state.timeActual - server_state.timeAnterior) // 60
+    minutosUltimaActualizacion = int((server_state.timeActual - server_state.timeAnterior) / 60)
     st.write(f"Tiempo: {minutosUltimaActualizacion}")
-    st.write(f"Recargas: {server_state.reload}")
+    ahora = datetime.now()
+    fecha_hora_minutos_str = ahora.strftime("%Y-%m-%d %H:%M")
+    st.write(f"Última actualización: {fecha_hora_minutos_str}")
     ejecutaTabs(spreadsheet)
     st.markdown(crearHTMLLogosFinales(), unsafe_allow_html=True)
 
