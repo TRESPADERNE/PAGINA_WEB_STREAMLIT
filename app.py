@@ -19,8 +19,7 @@ def main():
         st.cache_data.clear()
         server_state.reload = (server_state.reload + 1) % 2
 
-    st.write(st.query_params.get("reset"))    
-
+    
     # if st.session_state.contador == 1:
     #     st.write("¡Bienvenido.")
 
@@ -31,6 +30,8 @@ def main():
 
     # Cabecera
     st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
+
+    st.write(st.query_params.get("reset"))    
 
     tab1, tab2, tab3, tab4 = st.tabs(denominacionesFase())
 
