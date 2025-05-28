@@ -1,3 +1,3 @@
 streamlit==1.44
 gspread
-streamlit-server-state
+streamlit-server-state==0.20.2
