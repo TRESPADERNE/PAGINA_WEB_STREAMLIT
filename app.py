@@ -40,7 +40,8 @@ def main():
     # Inyección de estilos CSS
     inyectaEstilos()
     st.markdown(crearHTMLCabecera(), unsafe_allow_html=True)
-    st.write(server_state.time)
+    st.write(f"Tiempo: {server_state.time}")
+    st.write(f"Recargas: {server_state.reload}")
     ejecutaTabs(spreadsheet)
     st.markdown(crearHTMLLogosFinales(), unsafe_allow_html=True)
 
