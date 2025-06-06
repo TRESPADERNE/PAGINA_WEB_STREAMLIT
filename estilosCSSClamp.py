@@ -69,7 +69,7 @@ def estilosCSSGrupos():
     <style>
     /* --- ESTILOS GENERALES Y RESET BÁSICO --- */
     html {
-        font-size: 16px; /* Base para unidades rem, ajusta si tu base es diferente */
+        font-size: 16px;
         box-sizing: border-box;
     }
     *, *:before, *:after {
@@ -78,14 +78,14 @@ def estilosCSSGrupos():
     body {
         font-family: Arial, sans-serif;
         color: #333;
-        margin: 0; /* Buena práctica */
+        margin: 0;
     }
 
     /* --- CONTENEDOR DEL PARTIDO --- */
     .match-container {
         background-color: #ffffff;
-        /* padding: 4px 4px; -> Se ajustará con clamp */
-        padding: clamp(0.25rem, 1vw, 0.5rem) clamp(0.25rem, 1vw, 0.5rem); /* ej: 4px 4px */
+        padding: 4px 4px; /* Fallback para navegadores antiguos */
+        padding: clamp(0.25rem, 1vw, 0.5rem) clamp(0.25rem, 1vw, 0.5rem);
         margin-bottom: 0px;
         border-bottom: 1px solid #eee;
     }
@@ -100,12 +100,11 @@ def estilosCSSGrupos():
 
     .datetime {
         text-align: center;
-        /* font-size: 0.85em; -> clamp(0.8rem, 2.2vw, 0.9rem) */
-        font-size: clamp(0.8rem, 2.2vw, 0.9rem); /* ej: 13.6px, escala, max 14.4px */
         color: #555;
-        /* margin-bottom: 4px; -> rem */
         margin-bottom: 0.25rem; /* 4px */
         font-weight: bold;
+        font-size: 0.85em; /* Fallback */
+        font-size: clamp(0.8rem, 2.2vw, 0.9rem);
     }
 
     .details {
@@ -118,8 +117,8 @@ def estilosCSSGrupos():
     .team {
         display: flex;
         align-items: center;
-        flex-basis: 39%; /* Se mantendrá y ajustará con el espacio disponible */
-        /* min-width: 0; Podría ser útil si los nombres de equipo causan problemas de desbordamiento */
+        flex-basis: 39%;
+        min-width: 0;
     }
 
     .team-left {
@@ -134,27 +133,28 @@ def estilosCSSGrupos():
 
     .team-name {
         font-weight: bold;
-        /* font-size: 0.9em; -> clamp(0.85rem, 2.5vw, 0.95rem) */
-        font-size: clamp(0.85rem, 2.5vw, 0.95rem); /* ej: 13.6px, escala, max 15.2px */
-        /* margin: 0 8px; -> rem */
-        margin: 0 clamp(0.25rem, 1.5vw, 0.5rem); /* ej: 0 4px a 0 8px */
         line-height: 1.2;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 150px; /* Límite para que ellipsis funcione en desktop */
-        display: inline-block; /* Para que max-width y ellipsis funcionen con nowrap */
+        max-width: 150px;
+        display: inline-block;
         vertical-align: middle;
-        min-width: 0; /* Ayuda a Flexbox a manejar texto largo */
+        min-width: 0;
+        font-size: 0.9em; /* Fallback */
+        font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+        margin: 0 8px; /* Fallback */
+        margin: 0 clamp(0.25rem, 1.5vw, 0.5rem);
     }
 
     .logo {
-        /* width: 28px; height: 28px; -> clamp */
-        width: clamp(1.375rem, 5vw, 1.75rem); /* ej: 22px, escala, max 28px */
-        height: clamp(1.375rem, 5vw, 1.75rem);
         object-fit: contain;
         flex-shrink: 0;
         vertical-align: middle;
+        width: 28px; /* Fallback */
+        height: 28px; /* Fallback */
+        width: clamp(1.375rem, 5vw, 1.75rem);
+        height: clamp(1.375rem, 5vw, 1.75rem);
     }
 
     /* Orden de los logos y nombres (sin cambios) */
@@ -164,28 +164,28 @@ def estilosCSSGrupos():
     .team-right .team-name { order: 2; }
 
     .score {
-        /* font-size: 1.6em; -> clamp(1.4rem, 5vw, 1.8rem) */
-        font-size: clamp(1.4rem, 5vw, 1.8rem); /* ej: 22.4px, escala, max 28.8px */
         font-weight: bold;
         color: #e63946;
         text-align: center;
-        /* padding: 0 3px; -> rem o clamp */
-        padding: 0 clamp(0.125rem, 0.5vw, 0.25rem); /* ej: 0 2px a 0 4px */
-        flex-basis: 18%; /* Aumentado un poco, antes 16% y luego 18% en móvil. Podríamos hacerlo dinámico con clamp(min-width) */
-        min-width: clamp(40px, 10vw, 60px); /* Darle un ancho mínimo flexible */
+        flex-basis: 18%;
         flex-shrink: 0;
+        font-size: 1.6em; /* Fallback */
+        font-size: clamp(1.4rem, 5vw, 1.8rem);
+        padding: 0 3px; /* Fallback */
+        padding: 0 clamp(0.125rem, 0.5vw, 0.25rem);
+        min-width: 50px; /* Fallback */
+        min-width: clamp(40px, 10vw, 60px);
     }
 
     .penalty-score {
         text-align: center;
-        /* font-size: 0.8em; -> clamp(0.7rem, 2vw, 0.8rem) */
-        font-size: clamp(0.7rem, 2vw, 0.8rem); /* ej: 11.2px, escala, max 12.8px */
         color: #4A90E2;
         font-weight: normal;
-        /* margin-top: 3px; -> rem */
-        margin-top: 0.1875rem; /* 3px */
-        clear: both; /* Mantenido por si acaso, aunque con flex no debería ser necesario */
+        clear: both;
         width: 100%;
+        margin-top: 0.1875rem; /* 3px */
+        font-size: 0.8em; /* Fallback */
+        font-size: clamp(0.7rem, 2vw, 0.8rem);
     }
 
     /* --- TABLA DE CLASIFICACIÓN --- */
@@ -193,163 +193,141 @@ def estilosCSSGrupos():
         width: 100%;
         border-collapse: collapse;
         margin-bottom: 1.25rem; /* 20px */
-        /* font-size: 0.85em; -> clamp */
-        font-size: clamp(0.75rem, 2.5vw, 0.9rem); /* ej: 12px, escala, max 14.4px */
+        font-size: 0.85em; /* Fallback */
+        font-size: clamp(0.75rem, 2.5vw, 0.9rem);
     }
 
     .tabla-clasificacion th, .tabla-clasificacion td {
         border: 1px solid #ddd;
-        /* padding: 6px 4px; -> clamp */
-        padding: clamp(0.25rem, 1vw, 0.375rem) clamp(0.125rem, 0.8vw, 0.25rem); /* ej: 4px 2px a 6px 4px */
         text-align: center;
         white-space: nowrap;
+        padding: 6px 4px; /* Fallback */
+        padding: clamp(0.25rem, 1vw, 0.375rem) clamp(0.125rem, 0.8vw, 0.25rem);
     }
 
     .tabla-clasificacion th {
         background-color: #004080;
         color: white;
         font-weight: bold;
-        /* padding-top: 8px; padding-bottom: 8px; -> se maneja con el padding general de th/td o se puede refinar */
-        padding-top: clamp(0.375rem, 1.2vw, 0.5rem);    /* ej: 6px a 8px */
+        padding-top: 8px; /* Fallback */
+        padding-bottom: 8px; /* Fallback */
+        padding-top: clamp(0.375rem, 1.2vw, 0.5rem);
         padding-bottom: clamp(0.375rem, 1.2vw, 0.5rem);
     }
 
     .tabla-clasificacion td.col-equipo {
         text-align: left;
-        white-space: normal; /* Permitir multilínea para nombres de equipo */
+        white-space: normal;
     }
 
     .tabla-clasificacion td.col-equipo .logo-clasificacion {
-        /* width: 20px; height: 20px; -> clamp */
-        width: clamp(1rem, 3.5vw, 1.25rem); /* ej: 16px, escala, max 20px */
-        height: clamp(1rem, 3.5vw, 1.25rem);
         object-fit: contain;
         vertical-align: middle;
-        /* margin-right: 5px; -> rem */
-        margin-right: clamp(0.1875rem, 1vw, 0.3125rem); /* ej: 3px a 5px */
         display: inline-block;
+        width: 20px; /* Fallback */
+        height: 20px; /* Fallback */
+        width: clamp(1rem, 3.5vw, 1.25rem);
+        height: clamp(1rem, 3.5vw, 1.25rem);
+        margin-right: 5px; /* Fallback */
+        margin-right: clamp(0.1875rem, 1vw, 0.3125rem);
     }
-
 
     /* --- MEDIA QUERIES --- */
-
-    /* Tablets pequeñas y móviles grandes en landscape (ej. hasta 768px) */
-    @media (max-width: 768px) {
-        /* Los valores de clamp ya deberían estar haciendo un buen trabajo aquí.
-        Puedes añadir overrides si algo específico necesita ser diferente
-        fuera de los rangos de clamp para este breakpoint. */
-
-        .team-name {
-            /* Si los nombres aún son muy largos y el ellipsis no es suficiente,
-            podrías forzar white-space: normal aquí antes que en móviles más pequeños.
-            white-space: normal;
-            overflow: visible;
-            text-overflow: clip;
-            max-width: none; */
-        }
-    }
+    /* No es estrictamente necesario añadir fallbacks dentro de las media queries si ya están fuera,
+       pero para ser extra seguros y mantener la lógica, se han añadido también. */
 
     @media (max-width: 600px) {
-        .match-container {
-            /* Padding ya es fluido, pero si necesitas un mínimo mayor: */
-            /* padding: clamp(0.4rem, 1.5vw, 0.5rem) clamp(0.3rem, 1vw, 0.375rem); */
-        }
-
         .datetime {
-            font-size: clamp(0.8125rem, 2.5vw, 0.9375rem); /* MIN: 13px, MAX: 15px */
-            margin-bottom: 0.375rem; /* 6px */
-        }
-
-        .team {
-            flex-basis: 39%; /* O ajusta según sea necesario */
+            font-size: 14px; /* Fallback para 600px */
+            font-size: clamp(0.8125rem, 2.5vw, 0.9375rem);
         }
 
         .team-name {
-            /* MIN: 13.6px (0.85rem) a 14px (0.875rem), PREFERRED puede ser 3vw o 3.2vw */
-            font-size: clamp(0.875rem, 3.2vw, 1rem); /* MIN: 14px, MAX: 16px */
-            /* 3.2vw de 393px = 12.57px -> se irá al MIN de 14px */
-            margin: 0 clamp(0.25rem, 1.2vw, 0.375rem); /* ej: 0 4px a 0 6px */
+            font-size: 15px; /* Fallback para 600px */
+            font-size: clamp(0.875rem, 3.2vw, 1rem);
+            margin: 0 5px; /* Fallback */
+            margin: 0 clamp(0.25rem, 1.2vw, 0.375rem);
             white-space: normal;
             overflow: visible;
             text-overflow: clip;
             max-width: none;
-            line-height: 1.2; /* Un poco más de espacio entre líneas si se rompe */
+            line-height: 1.2;
         }
 
         .logo {
-            /* MIN: 22px (1.375rem) a 24px (1.5rem) */
-            width: clamp(1.375rem, 5.5vw, 1.75rem); /* MIN: 22px, MAX: 28px */
+            width: 26px; /* Fallback para 600px */
+            height: 26px; /* Fallback */
+            width: clamp(1.375rem, 5.5vw, 1.75rem);
             height: clamp(1.375rem, 5.5vw, 1.75rem);
-            /* 5.5vw de 393px = 21.6px -> se irá al MIN de 22px */
         }
 
         .score {
-            /* MIN: 24px (1.5rem) a 26px (1.625rem) */
-            font-size: clamp(1.5rem, 6vw, 1.875rem); /* MIN: 24px, MAX: 30px */
-            /* 6vw de 393px = 23.58px -> se irá al MIN de 24px */
+            font-size: 26px; /* Fallback para 600px */
+            font-size: clamp(1.5rem, 6vw, 1.875rem);
+            min-width: 55px; /* Fallback */
             min-width: clamp(50px, 12vw, 60px);
-            padding: 0 clamp(0.125rem, 0.5vw, 0.25rem);
             flex-basis: 20%;
         }
 
         .penalty-score {
-            font-size: clamp(0.8rem, 2.2vw, 0.9rem); /* MIN: 12.8px, MAX: 14.4px */
-            margin-top: 0.1875rem; /* 3px */
+            font-size: 13px; /* Fallback para 600px */
+            font-size: clamp(0.8rem, 2.2vw, 0.9rem);
         }
 
-        /* Tabla de Clasificación en móviles medianos */
         .tabla-clasificacion {
-            font-size: clamp(0.8125rem, 2.5vw, 0.9375rem); /* MIN: 13px, MAX: 15px */
+            font-size: 14px; /* Fallback para 600px */
+            font-size: clamp(0.8125rem, 2.5vw, 0.9375rem);
         }
         .tabla-clasificacion th, .tabla-clasificacion td {
-            padding: clamp(0.3125rem, 1vw, 0.4375rem) clamp(0.1875rem, 0.8vw, 0.3125rem); /* MIN: 5px 3px, MAX: 7px 5px */
+            padding: 6px 4px; /* Fallback para 600px */
+            padding: clamp(0.3125rem, 1vw, 0.4375rem) clamp(0.1875rem, 0.8vw, 0.3125rem);
         }
         .tabla-clasificacion td.col-equipo .logo-clasificacion {
-            /* MIN: 18px (1.125rem) a 20px (1.25rem) */
-            width: clamp(1.125rem, 4vw, 1.375rem); /* MIN: 18px, MAX: 22px */
+            width: 20px; /* Fallback para 600px */
+            height: 20px; /* Fallback */
+            width: clamp(1.125rem, 4vw, 1.375rem);
             height: clamp(1.125rem, 4vw, 1.375rem);
-            margin-right: clamp(0.25rem, 1vw, 0.3125rem);
         }
     }
 
-    /* Móviles más pequeños (ej. para anchos POR DEBAJO de ~380px, AFECTARÁ A XIAOMI A1/A3) */
-    /* ¡SI ESTO SE VE BIEN EN XIAOMI, NO LO TOQUES MUCHO! */
     @media (max-width: 380px) {
         .datetime {
-            /* Original de la propuesta anterior: clamp(0.75rem, 2.5vw, 0.85rem) */
-            /* Si 12px es bueno, mantenlo o ajusta mínimamente */
-            font-size: clamp(0.75rem, 2.8vw, 0.85rem); /* MIN: 12px. 2.8vw de 360px = 10.08px -> 12px */
+            font-size: 12px; /* Fallback para <380px */
+            font-size: clamp(0.75rem, 2.8vw, 0.85rem);
         }
         .team-name {
-            /* Original: clamp(0.75rem, 3vw, 0.85rem); MIN: 12px */
-            font-size: clamp(0.75rem, 3.2vw, 0.875rem); /* MIN: 12px. 3.2vw de 360px = 11.52px -> 12px. MAX: 14px */
+            font-size: 12px; /* Fallback para <380px */
+            font-size: clamp(0.75rem, 3.2vw, 0.875rem);
         }
         .logo {
-            /* Original: clamp(1.125rem, 4.5vw, 1.375rem); MIN: 18px */
-            width: clamp(1.125rem, 5vw, 1.375rem); /* MIN: 18px. 5vw de 360px = 18px. MAX: 22px */
+            width: 18px; /* Fallback para <380px */
+            height: 18px; /* Fallback */
+            width: clamp(1.125rem, 5vw, 1.375rem);
             height: clamp(1.125rem, 5vw, 1.375rem);
         }
         .score {
-            /* Original: clamp(1.25rem, 5vw, 1.5rem); MIN: 20px */
-            font-size: clamp(1.375rem, 5.5vw, 1.625rem); /* MIN: 22px. 5.5vw de 360px = 19.8px -> 22px. MAX: 26px */
-            min-width: clamp(45px, 11vw, 55px); /* 11vw de 360 = 39.6px -> 45px */
+            font-size: 22px; /* Fallback para <380px */
+            font-size: clamp(1.375rem, 5.5vw, 1.625rem);
+            min-width: 45px; /* Fallback */
+            min-width: clamp(45px, 11vw, 55px);
         }
         .penalty-score {
-            /* Original: clamp(0.7rem, 2vw, 0.8rem); MIN: 11.2px */
-            font-size: clamp(0.7rem, 2.2vw, 0.8rem); /* MIN: 11.2px. 2.2vw de 360 = 7.92px -> 11.2px */
+            font-size: 11.2px; /* Fallback para <380px */
+            font-size: clamp(0.7rem, 2.2vw, 0.8rem);
         }
 
         .tabla-clasificacion {
-            /* Original: clamp(0.7rem, 2.2vw, 0.8rem); MIN: 11.2px */
-            font-size: clamp(0.7rem, 2.5vw, 0.8125rem); /* MIN: 11.2px. 2.5vw de 360 = 9px -> 11.2px. MAX: 13px */
+            font-size: 11.2px; /* Fallback para <380px */
+            font-size: clamp(0.7rem, 2.5vw, 0.8125rem);
         }
         .tabla-clasificacion th, .tabla-clasificacion td {
-            /* Original: padding: clamp(0.1875rem, 0.8vw, 0.25rem) clamp(0.1rem, 0.5vw, 0.125rem); */
-            padding: clamp(0.25rem, 0.8vw, 0.3125rem) clamp(0.125rem, 0.5vw, 0.1875rem); /* MIN: 4px 2px */
+            padding: 4px 2px; /* Fallback para <380px */
+            padding: clamp(0.25rem, 0.8vw, 0.3125rem) clamp(0.125rem, 0.5vw, 0.1875rem);
         }
         .tabla-clasificacion td.col-equipo .logo-clasificacion {
-            /* Original: clamp(1rem, 3vw, 1.125rem); MIN: 16px */
-            width: clamp(1rem, 3.2vw, 1.125rem);   /* MIN: 16px. 3.2vw de 360 = 11.52px -> 16px. MAX: 18px */
+            width: 16px; /* Fallback para <380px */
+            height: 16px; /* Fallback */
+            width: clamp(1rem, 3.2vw, 1.125rem);
             height: clamp(1rem, 3.2vw, 1.125rem);
         }
     }
